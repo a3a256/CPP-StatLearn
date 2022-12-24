@@ -190,6 +190,22 @@ float** multiply_matrix(float arr1[][1000], float arr2[][1000], int rows1, int r
     return new_arr;
 }
 
+std::vector<std::vector<float>> dot(std::vector<std::vector<float>> arr1, std::vector<std::vector<float>> arr2){
+    std::vector<std::vector<float>> res;
+    for(int i = 0; i < arr1.size(); i++){
+        std::vector<float> temp;
+        float _sum=0;
+        for(int j = 0; j<arr2[0].size(); j++){
+            for(int k = 0; k<arr1[0].size(); k++){
+                _sum += arr1[i][k]*arr2[k][i];
+            }
+            temp.push_back(_sum);
+        }
+        res.push_back(temp);
+    }
+    return res;
+}
+
 
 float** transpose_matrix(float arr[][1000], int rows, int columns){
     static float** new_arr = 0;

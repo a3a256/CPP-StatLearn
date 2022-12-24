@@ -3,7 +3,7 @@
 
 float* addition_1d();
 float** transpose_matrix();
-float** multiply_matrix();
+std::vector<std::vector<float>> dot();
 float** transform_scaler();
 int argmax();
 float* mean();
