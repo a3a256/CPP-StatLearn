@@ -8,6 +8,7 @@ class LinearRegression{
 
     public:
         int epochs = 1;
+        float alpha = 0.01f;
         
 
         void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
@@ -28,7 +29,24 @@ class LinearRegression{
                     dis.push_back(x[j]);
                     pred = dot(dis, transpose(weights))[0][0];
                     loss = 2*pred*(pred-y[j][0]);
+                    for(int z = 0; z<weights[0].size(); z++){
+                        weights[0][z] -= loss*alpha*weights[0][z];
+                    }
                 }
             }
+        }
+
+        std::vector<std::vector<float>> predict(std::vector<std::vector<float>> x){
+            std::vector<std::vector<float>> res;
+            std::vector<std::vector<float>> dis;
+            std::vector<float> pred;
+            int pred;
+            for(int i = 0; i<x.size(); i++){
+                dis.push_back(x[i]);
+                pred = dot(dis, transpose(weights))[0];
+                res.push_back({pred});
+            }
+
+            return res;
         }
 };
