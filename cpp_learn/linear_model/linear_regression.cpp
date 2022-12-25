@@ -61,6 +61,8 @@ std::vector<std::vector<float>> optimize(std::vector<std::vector<float>> x, std:
                 temp.push_back(0.00001f);
             }
             weights.push_back(temp);
+            temp.resize(0);
+            temp.shrink_to_fit();
             std::vector<std::vector<float>> dis;
 
 
@@ -72,9 +74,14 @@ std::vector<std::vector<float>> optimize(std::vector<std::vector<float>> x, std:
                     for(int z = 0; z<weights[0].size(); z++){
                         weights[0][z] -= loss*alpha*weights[0][z];
                     }
+                    dis.pop_back();
                 }
             }
-        }
+            dis.resize(0);
+            dis.shrink_to_fit();
+
+            return weights;
+}
 
 std::vector<std::vector<float>> calculate(std::vector<std::vector<float>> x, std::vector<std::vector<float>> weights){
             std::vector<std::vector<float>> res;
@@ -85,6 +92,9 @@ std::vector<std::vector<float>> calculate(std::vector<std::vector<float>> x, std
                 pred = dot(dis, transpose(weights))[0];
                 res.push_back({pred});
             }
+
+            dis.resize(0);
+            dis.shrink_to_fit();
 
             return res;
         }
