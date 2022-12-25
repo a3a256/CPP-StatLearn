@@ -16,3 +16,4 @@ std::vector<int> unique();
 int classes();
 std::vector<int> bincount();
 std::vector<std::vector <int>> square();
+std::vector<std::vector<float>> transpose();

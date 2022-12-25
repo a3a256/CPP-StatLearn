@@ -220,6 +220,18 @@ float** transpose_matrix(float arr[][1000], int rows, int columns){
     return new_arr;
 }
 
+std::vector<std::vector<float>> transpose(std::vector<std::vector<float>> arr){
+    std::vector<std::vector<float>> res;
+    for(int i = 0; i<arr[0].size(); i++){
+        std::vector<float> temp;
+        for(int j = 0; j<arr.size(); j++){
+            temp.push_back(arr[j][i]);
+        }
+        res.push_back(temp);
+    }
+    return res;
+}
+
 
 float* addition_1d(float arr[], float arr2[], int size){
 
