@@ -16,6 +16,7 @@ std::vector<std::vector<float>> fit(std::vector<std::vector<float>> x, std::vect
     temp.shrink_to_fit();
     float pred;
     float loss;
+    double temple;
 
 
     for(int i = 0; i<epochs; i++){
@@ -23,7 +24,7 @@ std::vector<std::vector<float>> fit(std::vector<std::vector<float>> x, std::vect
             dis.push_back(x[i]);
             pred = dot(dis, transpose(weights))[0][0];
             std::cout << pred;
-            pred = calculate(pred);
+            temple = calculate(pred);
             if(y[j][0] == 0){
                 loss = 1/(1-pred);
             }else{

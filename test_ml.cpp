@@ -49,7 +49,7 @@ void test_linear_regression(){
 
 
 int main(){
-    test_logistic_regression();
+    test_linear_regression();
 
     return 0;
 }
