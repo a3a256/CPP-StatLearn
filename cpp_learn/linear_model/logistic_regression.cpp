@@ -1,6 +1,11 @@
 #include <iostream>
 #include "../../numcpp/np_define.h"
 
+float calculate(float e){
+    float euler = 1/(1-exp(-e));
+    return euler;
+}
+
 std::vector<std::vector<float>> fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, int epochs, float alpha){
     std::vector<std::vector<float>> weights;
     std::vector<std::vector<float>> dis;
@@ -52,11 +57,6 @@ std::vector<std::vector<float>> fit(std::vector<std::vector<float>> x, std::vect
 
     return weights;
 
-}
-
-float calculate(float e){
-    float euler = 1/(1-exp(-e));
-    return euler;
 }
 
 
