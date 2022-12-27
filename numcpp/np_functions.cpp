@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <cmath>
 #include <vector>
-
+// all functions are redefined all of a sudden, needs further search into the topic
 std::vector<std::vector <int>> square(std::vector<std::vector<int>> vec){
     for(int i = 0; i<vec.size(); i++){
         for(int j = 0; j<vec[0].size(); j++){
