@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../../numcpp/np_define.h"
+#include <vector>
 
 float calculate(float e){
     float euler = 1/(1-exp(-e));
