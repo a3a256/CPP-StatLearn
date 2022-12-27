@@ -16,7 +16,7 @@ std::vector<std::vector<float>> fit(std::vector<std::vector<float>> x, std::vect
     temp.shrink_to_fit();
     float pred;
     float loss;
-    double temple;
+    float temple;
 
 
     for(int i = 0; i<epochs; i++){
