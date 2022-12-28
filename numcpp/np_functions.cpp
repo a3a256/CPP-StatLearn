@@ -232,24 +232,6 @@ std::vector<std::vector<float>> transpose(std::vector<std::vector<float>> arr){
     return res;
 }
 
-// std::vector<std::vector<float>> vector_plus_num(std::vector<std::vector<float>> arr, float num){
-//     for(int i = 0; i<arr.size(); i++){
-//         for(int j = 0; j<arr[0].size(); j++){
-//             arr[i][j] += num;
-//         }
-//     }
-//     return arr;
-// }
-
-// std::vector<std::vector<float>> vector_minus_num(std::vector<std::vector<float>> arr, float num){
-//     for(int i = 0; i<arr.size(); i++){
-//         for(int j = 0; j<arr[0].size(); j++){
-//             arr[i][j] += num;
-//         }
-//     }
-//     return arr;
-// }
-
 
 float* addition_1d(float arr[], float arr2[], int size){
 
