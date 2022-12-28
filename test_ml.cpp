@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "cpp_learn/activate.h"
 
 void test_logistic_regression(){
@@ -49,7 +50,7 @@ void test_linear_regression(){
 
 
 int main(){
-    test_linear_regression();
+    test_logistic_regression();
 
     return 0;
 }
