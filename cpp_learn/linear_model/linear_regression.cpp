@@ -44,7 +44,7 @@ std::vector<std::vector<float>> calculate(std::vector<std::vector<float>> x, std
             for(int i = 0; i<x.size(); i++){
                 dis.push_back(x[i]);
                 pred = dot(dis, transpose(weights))[0];
-                res.push_back({pred});
+                res.push_back(pred);
             }
 
             dis.resize(0);
@@ -63,21 +63,13 @@ float logistic_regression_calculate(float e){
 }
 
 
-std::vector<std::vector<float>> logistic_regression_fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, int epochs, float alpha){
-    std::vector<std::vector<float>> weights;
+std::vector<std::vector<float>> logistic_regression_fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, std::vector<std::vector<float>> weights, int epochs, float alpha){
     std::vector<std::vector<float>> dis;
-    std::vector<float> temp;
     int columns, rows;
     rows = x.size();
     columns = x[0].size();
-    for(int i = 0; i<columns; i++){
-        temp.push_back(0.00001);
-    }
-    weights.push_back(temp);
-    temp.resize(0);
-    temp.shrink_to_fit();
-    float pred;
-    float loss;
+    long double pred;
+    long double loss;
 
 
     for(int i = 0; i<epochs; i++){
