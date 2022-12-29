@@ -1,6 +1,6 @@
 #include <iostream>
 #include "linear_model/linear_regression.cpp"
-#include "linear_model/logistic_regression.cpp"
+// #include "linear_model/logistic_regression.cpp"
 #include <vector>
 
 class LinearRegression{
@@ -40,13 +40,13 @@ class LogisticRegresssion{
 
 
         void optimize(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
-            weights = fit(x, y, epochs, alpha);
+            weights = logistic_regression_fit(x, y, epochs, alpha);
         }
 
 
 
         std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x){
-            return process(x, weights);
+            return logistic_regression_predict(x, weights);
         }
 
 
