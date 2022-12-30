@@ -205,7 +205,7 @@ std::vector<std::vector<float>> dot(std::vector<std::vector<float>> arr1, std::v
     }
     std::vector<std::vector<float>>().swap(arr1);
     std::vector<std::vector<float>>().swap(arr2);
-    
+
     return res;
 }
 
@@ -276,13 +276,18 @@ float** transform_scaler(int arr[][1000], int rows, int columns){
     return new_arr;
 }
 
-float mean(float *arr, int length){
-    float res;
+std::vector<float> mean(std::vector<std::vector<float>> arr, int axis){
+    std::vector<float> res;
     float sum = 0.0f;
-    for(int i = 0; i<length; i++){
-        sum += arr[i];
+    if(axis == 0){
+        for(int i = 0; i<arr[0].size(); i++){
+            for(int j = 0; j<arr.size(); j++){
+                sum += arr[j][i];
+            }
+            res.push_back(sum/(float)arr.size());
+            sum = 0.0f;
+        }
     }
-    res = sum/(float)length;
     return res;
 }
 

@@ -6,7 +6,7 @@ float** transpose_matrix();
 std::vector<std::vector<float>> dot();
 float** transform_scaler();
 int argmax();
-float* mean();
+std::vector<float> mean();
 float standard_deviation();
 float determinant();
 std::vector<std::vector<float>> eye();

@@ -50,6 +50,9 @@ void test_linear_regression(){
 
 
 int main(){
+
+    std::cout << "check";
+
     test_logistic_regression();
 
     return 0;
