@@ -287,6 +287,14 @@ std::vector<float> mean(std::vector<std::vector<float>> arr, int axis){
             res.push_back(sum/(float)arr.size());
             sum = 0.0f;
         }
+    }else{
+        for(int i = 0; i<arr.size(); i++){
+            for(int j = 0; j<arr[0].size(); j++){
+                sum += arr[i][j];
+            }
+            res.push_back(sum/(float)arr[0].size());
+            sum = 0.0f;
+        }
     }
     return res;
 }
