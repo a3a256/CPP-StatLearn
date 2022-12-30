@@ -203,6 +203,9 @@ std::vector<std::vector<float>> dot(std::vector<std::vector<float>> arr1, std::v
         }
         res.push_back(temp);
     }
+    std::vector<std::vector<float>>().swap(arr1);
+    std::vector<std::vector<float>>().swap(arr2);
+    
     return res;
 }
 
