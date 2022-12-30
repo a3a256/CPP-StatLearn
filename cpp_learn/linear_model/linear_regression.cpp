@@ -88,7 +88,7 @@ std::vector<std::vector<float>> logistic_regression_fit(std::vector<std::vector<
             }
 
 
-            dis.pop_back();
+            std::vector<std::vector<float>>().swap(dis);
 
 
 
@@ -97,8 +97,7 @@ std::vector<std::vector<float>> logistic_regression_fit(std::vector<std::vector<
     }
 
 
-    dis.resize(0);
-    dis.shrink_to_fit();
+    std::vector<std::vector<float>>().swap(dis);
 
 
 
@@ -125,11 +124,10 @@ std::vector<std::vector<int>> logistic_regression_predict(std::vector<std::vecto
             res.push_back({0});
         }
 
-        dis.pop_back();
+        std::vector<std::vector<float>>().swap(dis);
     }
 
-    dis.resize(0);
-    dis.shrink_to_fit();
+    std::vector<std::vector<float>>().swap(dis);
 
 
 

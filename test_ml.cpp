@@ -50,7 +50,7 @@ void test_linear_regression(){
 
 
 int main(){
-    test_linear_regression();
+    test_logistic_regression();
 
     return 0;
 }
