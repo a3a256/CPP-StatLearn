@@ -279,6 +279,13 @@ float** transform_scaler(int arr[][1000], int rows, int columns){
 std::vector<float> mean(std::vector<std::vector<float>> arr, int axis){
     std::vector<float> res;
     float sum = 0.0f;
+    if(arr[0].size() == 1){
+        for(int i = 0; i<arr.size(); i++){
+            sum += arr[i][0];
+        }
+        res.push_back(sum/(float)arr.size());
+        return res;
+    }
     if(axis == 0){
         for(int i = 0; i<arr[0].size(); i++){
             for(int j = 0; j<arr.size(); j++){
