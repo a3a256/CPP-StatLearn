@@ -6,7 +6,13 @@ float** transpose_matrix();
 std::vector<std::vector<float>> dot();
 float** transform_scaler();
 int argmax();
-std::vector<float> mean();
+class mean{
+    public:
+        int axis = 0;
+        std::vector<float> mean_val(std::vector<std::vector<float>> arr){
+            return mean_calculate(arr, axis);
+        }
+};
 std::vector<float> standard_deviation();
 float determinant();
 std::vector<std::vector<float>> eye();

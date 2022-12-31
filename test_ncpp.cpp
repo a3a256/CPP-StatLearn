@@ -1,6 +1,9 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_mean(){
+}
+
 void dot_test(){
     std::vector<std::vector<float>> arr1 {{1.2f, 2.3f}, {3.4f, 4.5f}};
     std::vector<std::vector<float>> arr2{{1.3f}, {3.1f}};
