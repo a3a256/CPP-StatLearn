@@ -306,16 +306,20 @@ std::vector<float> mean(std::vector<std::vector<float>> arr, int axis){
     return res;
 }
 
-float standard_deviation(float *arr, int length){
-    float r;
-    float mn;
-    mn = mean(arr, length);
+std::vector<float> standard_deviation(std::vector<std::vector<float>> arr){
+    std::vector<float> r;
+    std::vector<float> mn;
+    mn = mean(arr, (int)0);
     float upper = 0.0f;
     float temp = 0.0f;
-    for(int i = 0; i<length; i++){
-        temp = arr[i] - mn;
-        upper += pow(temp, 2);
+    if(arr[0].size() < 2){
+        for(int j = 0; j<arr[0].size(); j++){
+            for(int i = 0; i<arr.size(); i++){
+                temp = arr[i][j] - mn[j];
+                upper += pow(temp, 2);
+            }
+            r.push_back(sqrt(upper/(float)arr.size()));
+        }
     }
-    r = sqrt(upper/(float)length);
     return r;
 }

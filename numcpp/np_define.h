@@ -7,7 +7,7 @@ std::vector<std::vector<float>> dot();
 float** transform_scaler();
 int argmax();
 std::vector<float> mean();
-float standard_deviation();
+std::vector<float> standard_deviation();
 float determinant();
 std::vector<std::vector<float>> eye();
 std::vector<float> quantiles();
