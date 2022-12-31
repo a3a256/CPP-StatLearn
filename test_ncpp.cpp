@@ -1,7 +1,27 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_std(){
+    std::vector<std::vector<float>> arr {{5.1f, 6.5f}, {8.9f, 3.4f}, {9.9f, 12.0f}};
+    std::vector<float> res;
+    res = standard_deviation(arr);
+
+    for(int i = 0; i<res.size(); i++){
+        std::cout << res[i] << ' ';
+    }
+    std::cout << "\n";
+}
+
 void test_mean(){
+    mean mn;
+    std::vector<std::vector<float>> arr {{5.1f, 6.5f}, {8.9f, 3.4f}, {9.9f, 12.0f}};
+    std::vector<float> res;
+    res = mn.mean_val(arr);
+
+    for(int i = 0; i<res.size(); i++){
+        std::cout << res[i] << ' ';
+    }
+    std::cout << "\n";
 }
 
 void dot_test(){
@@ -31,6 +51,6 @@ void t_test(){
 }
 
 int main(){
-    t_test();
+    test_std();
     return 0;
 }

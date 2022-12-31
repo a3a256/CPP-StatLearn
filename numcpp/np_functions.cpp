@@ -312,7 +312,7 @@ std::vector<float> standard_deviation(std::vector<std::vector<float>> arr){
     mn = mean_calculate(arr, (int)0);
     float upper = 0.0f;
     float temp = 0.0f;
-    if(arr[0].size() < 2){
+    if(arr[0].size() >= 2){
         for(int j = 0; j<arr[0].size(); j++){
             for(int i = 0; i<arr.size(); i++){
                 temp = arr[i][j] - mn[j];
