@@ -74,7 +74,7 @@ std::vector<std::vector<float>> logistic_regression_fit(std::vector<std::vector<
 
     for(int i = 0; i<epochs; i++){
         for(int j = 0; j<rows; j++){
-            dis.push_back(x[i]);
+            dis.push_back(x[j]);
             pred = dot(dis, transpose(weights))[0][0];
             pred = logistic_regression_calculate(pred);
             if(y[j][0] == 0){
