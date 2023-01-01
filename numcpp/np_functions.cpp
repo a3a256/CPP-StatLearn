@@ -45,20 +45,20 @@ int classes(int arr[], int size){
     return length;
 }
 
-std::vector<int> unique(std::vector<int> arr){
+std::vector<int> unique(std::vector<std::vector<int>> arr){
     std::vector<int> u;
-    u.push_back(arr[0]);
+    u.push_back(arr[0][0]);
     int length = 1;
     bool exists=false;
     for(int i = 0; i<arr.size(); i++){
         exists=false;
         for(int j = 0; j<length; j++){
-            if(u[j] == arr[i]){
+            if(u[j] == arr[i][0]){
                 exists = true;
             }
         }
         if(!(exists)){
-            u.push_back(arr[i]);
+            u.push_back(arr[i][0]);
             length ++;
         }
     }
