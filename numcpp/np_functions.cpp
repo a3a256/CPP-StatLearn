@@ -13,10 +13,10 @@ std::vector<std::vector<int>> square(std::vector<std::vector<int>> vec){
     return vec;
 }
 
-int argmax(int arr[], int size){
+int argmax(std::vector<float> arr){
     int max=arr[0];
     int index=0;
-    for(int i=0; i<size; i++){
+    for(int i=0; i<arr.size(); i++){
         if(arr[i]>max){
             max = arr[i];
             index=i;
@@ -65,7 +65,7 @@ std::vector<int> unique(std::vector<std::vector<int>> arr){
     return u;
 }
 
-std::vector<int> bincount(std::vector<int> arr){
+std::vector<int> bincount(std::vector<std::vector<int>> arr){
     std::vector<int> counts;
     int freq;
     std::vector<int> n_classes;
@@ -73,7 +73,7 @@ std::vector<int> bincount(std::vector<int> arr){
     for(int i = 0; i<n_classes.size(); i++){
         freq = 0;
         for(int j = 0; j<arr.size(); j++){
-            if(n_classes[i] == arr[j]){
+            if(n_classes[i] == arr[j][0]){
                 freq ++;
             }
         }
