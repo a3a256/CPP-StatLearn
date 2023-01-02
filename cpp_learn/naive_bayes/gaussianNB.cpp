@@ -51,6 +51,7 @@ std::vector<std::vector<int>> gaussiannb_predict(std::vector<std::vector<float>>
         for(int j = 0; j<unique_classes.size(); j++){
             a = 1.0f;
             for(int p = 0; x[0].size(); p++){
+                std::cout << a << "\n";
                 a *= 1/sqrt(2*M_PI*pow(stds[j][p], 2))*exp((-0.5f)*pow(((x[i][p] - means[j][p])/stds[j][p]), 2));
             }
             proba.push_back(a);
