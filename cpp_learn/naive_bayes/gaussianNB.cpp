@@ -41,14 +41,12 @@ std::vector<std::vector<float>> gaussiannb_fit_stds(std::vector<std::vector<floa
 }
 
 
-std::vector<std::vector<int>> gaussiannb_predict(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, std::vector<std::vector<float>> means, std::vector<std::vector<float>> stds){
+std::vector<std::vector<int>> gaussiannb_predict(std::vector<std::vector<float>> x, std::vector<std::vector<float>> means, std::vector<std::vector<float>> stds){
     std::vector<std::vector<int>> probabilities;
     std::vector<float> proba;
-    std::vector<int> unique_classes;
     float a;
-    unique_classes = unique(y);
     for(int i = 0; i<x.size(); i++){
-        for(int j = 0; j<unique_classes.size(); j++){
+        for(int j = 0; j<stds.size(); j++){
             a = 1.0f;
             for(int p = 0; p<x[0].size(); p++){
                 a *= (1/sqrt((float)2*pow(stds[j][p], (float)2)))*exp((-0.5f)*pow(((x[i][p] - means[j][p])/stds[j][p]), (float)2));

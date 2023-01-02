@@ -16,7 +16,7 @@ void test_gaussiannb(){
 
     std::vector<std::vector<int>> res;
 
-    res = gnb.predict(x_test, y);
+    res = gnb.predict(x_test);
 
 
     for(int i = 0; i<res[0].size(); i++){
