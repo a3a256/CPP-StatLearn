@@ -50,13 +50,13 @@ std::vector<std::vector<int>> gaussiannb_predict(std::vector<std::vector<float>>
     for(int i = 0; i<x.size(); i++){
         for(int j = 0; j<unique_classes.size(); j++){
             a = 1.0f;
-            for(int p = 0; x[0].size(); p++){
-                std::cout << a << "\n";
-                a *= 1/sqrt(2*M_PI*pow(stds[j][p], 2))*exp((-0.5f)*pow(((x[i][p] - means[j][p])/stds[j][p]), 2));
+            for(int p = 0; p<x[0].size(); p++){
+                a *= (1/sqrt((float)2*pow(stds[j][p], (float)2)))*exp((-0.5f)*pow(((x[i][p] - means[j][p])/stds[j][p]), (float)2));
             }
             proba.push_back(a);
         }
         probabilities.push_back({argmax(proba)});
+        std::vector<float>().swap(proba);
     }
 
     return probabilities;
