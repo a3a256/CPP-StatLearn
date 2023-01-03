@@ -377,4 +377,20 @@ std::vector<std::vector<float>> cov(std::vector<std::vector<float>> arr){
     std::vector<std::vector<float>> temp;
     std::vector<float> x;
     std::vector<float> y;
+    for(int k = 0; k < arr[0].size(); k++){
+        for(int i = 0; i < arr[0].size(); i++){
+            for(int j = 0; j < arr.size(); j++){
+                if(i == k){
+                    x.push_back(arr[j][i]);
+                }else{
+                    x.push_back(arr[j][k]);
+                    y.push_back(arr[j][i]);
+                }
+            }
+            if(i == k){
+                temp.push_back(x);
+                row.push_back(variance(temp)[0]);
+            }
+        }
+    }
 }
