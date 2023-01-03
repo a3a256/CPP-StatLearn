@@ -330,6 +330,46 @@ std::vector<float> standard_deviation(std::vector<std::vector<float>> arr){
     return r;
 }
 
+std::vector<float> variance(std::vector<std::vector<float>> x){
+    std::vector<float> res;
+    std::vector<float> means;
+    means = mean_calculate(x, (int)0);
+    float val = 0.0f;
+
+    for(int i = 0; i<x[0].size(); i++){
+        for(int j = 0; j<x.size(); j++){
+            val += pow(x[j][i]-means[i], 2);
+        }
+        res.push_back(val/(float)x.size());
+        val = 0.0f;
+    }
+
+    std::vector<float>().swap(means);
+
+    return res;
+
+}
+
+float covariance(std::vector<float> x, std::vector<float> y){
+    std::vector<float> means;
+    std::vector<std::vector<float>> temp;
+    temp.push_back(x);
+    means.push_back(mean_calculate(temp, (int)0)[0]);
+    std::vector<std::vector<float>>().swap(temp);
+    temp.push_back(y);
+    means.push_back(mean_calculate(temp, (int)0)[0]);
+    std::vector<std::vector<float>>().swap(temp);
+    float val = 0.0f;
+
+
+    for(int i = 0; i<x.size(); i++){
+        val += (x[i] - means[0])*(y[i] - means[1]);
+    }
+
+
+    return val/(float)x.size();
+}
+
 
 std::vector<std::vector<float>> cov(std::vector<std::vector<float>> arr){
     std::vector<std::vector<float>> res;

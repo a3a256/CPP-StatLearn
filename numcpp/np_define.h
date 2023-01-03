@@ -23,3 +23,5 @@ int classes();
 std::vector<int> bincount();
 std::vector<std::vector<int>> square();
 std::vector<std::vector<float>> transpose();
+float covariance();
+std::vector<float> variance();
