@@ -279,6 +279,12 @@ float** transform_scaler(int arr[][1000], int rows, int columns){
 std::vector<float> mean_calculate(std::vector<std::vector<float>> arr, int axis){
     std::vector<float> res;
     float sum = 0.0f;
+    if(arr.size() == 1){
+        for(int i = 0; i<arr[0].size(); i++){
+            sum += arr[0][i];
+        }
+        res.push_back(sum/(float)arr[0].size());
+    }
     if(arr[0].size() == 1){
         for(int i = 0; i<arr.size(); i++){
             sum += arr[i][0];
@@ -322,4 +328,13 @@ std::vector<float> standard_deviation(std::vector<std::vector<float>> arr){
         }
     }
     return r;
+}
+
+
+std::vector<std::vector<float>> cov(std::vector<std::vector<float>> arr){
+    std::vector<std::vector<float>> res;
+    std::vector<float> row;
+    std::vector<std::vector<float>> temp;
+    std::vector<float> x;
+    std::vector<float> y;
 }
