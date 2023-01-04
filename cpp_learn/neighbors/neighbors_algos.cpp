@@ -38,6 +38,7 @@ class KNNPredict{
             std::map<float, std::vector<int>> classes;
             std::map<float, std::vector<int>> distances;
             std::map<int, int> classify;
+            std::vector<float> dist;
             while(first < x[0].size()-1){
                 for(int j = first+1; j<x[0].size(); j++){
                     second = j;
@@ -51,6 +52,7 @@ class KNNPredict{
                             distances[d].push_back(y[i][0]);
                         }
                     }
+                    dist = distances_extract(distances);
                 }
             }
             return 0;
