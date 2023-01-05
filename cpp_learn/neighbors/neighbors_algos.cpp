@@ -51,7 +51,7 @@ class KNNPredict{
     public:
         std::vector<std::vector<int>> y;
         std::vector<std::vector<float>> x;
-        int neighbors;
+        int neighbors=1;
 
         int predict_one(std::vector<float> pred){
             float x_axis;
@@ -109,7 +109,7 @@ class KNNPredict{
             return frequent_class(classes);
         }
 
-        std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x_pred){
+        std::vector<std::vector<int>> predict_vals(std::vector<std::vector<float>> x_pred){
             std::vector<std::vector<int>> pred;
             for(int i = 0; i<x_pred.size(); i++){
                 pred.push_back({predict_one(x_pred[i])});
