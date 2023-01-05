@@ -395,3 +395,33 @@ std::vector<std::vector<float>> cov(std::vector<std::vector<float>> arr){
         }
     }
 }
+
+std::vector<float> sort(std::vector<float> left, std::vector<float> right, float pivot){
+    left.push_back(pivot);
+    if(right.size() == 0){
+        return left;
+    }
+    for(int i = 0; i<right.size(); i++){
+        left.push_back(right[i]);
+    }
+    return left;
+}
+
+
+std::vector<float> quickSort(std::vector<float> arr){
+    if(arr.size() <= 1){
+        return arr;
+    }
+    int length = arr.size();
+    float pivot = arr.at((float)length-1);
+    std::vector<float> right;
+    std::vector<float> left;
+    for(int i = 0; i<length-1; i++){
+        if(arr[i] > pivot){
+            right.push_back(arr[i]);
+        }else{
+            left.push_back(arr[i]);
+        }
+    }
+    return sort(quickSort(left), quickSort(right), pivot);
+}
