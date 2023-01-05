@@ -12,6 +12,29 @@ bool present(std::map<float, std::vector<int>> dict, float target){
     return false;
 }
 
+bool present_classify(std::map<int, int> dict, int target){
+    for(std::map<int, int>::iterator it = dict.begin(); it != dict.end(); ++it){
+        if(it->first == target){
+            return true;
+        }
+    }
+    return false;
+}
+
+int frequent_class(std::map<int, int> dict){
+    int _max = 0;
+    for(std::map<int, int>::iterator it = dict.begin(); it != dict.end(); ++it){
+        if(it->second > _max){
+            _max = it->second;
+        }
+    }
+    for(std::map<int, int>::iterator it = dict.begin(); it != dict.end(); ++it){
+        if(it->second == _max){
+            return it->first;
+        }
+    }
+}
+
 float distance_calculate(float x1, float y1, float x2, float y2){
     return sqrt(pow(x1-x2, 2) + pow(y1-y2, 2));
 }
@@ -28,6 +51,7 @@ class KNNPredict{
     public:
         std::vector<std::vector<int>> y;
         std::vector<std::vector<float>> x;
+        int neighbors;
 
         int predict_one(std::vector<float> pred){
             float x_axis;
@@ -35,10 +59,13 @@ class KNNPredict{
             int first;
             int second;
             float d;
-            std::map<float, std::vector<int>> classes;
+            std::map<int, int> classes;
             std::map<float, std::vector<int>> distances;
             std::map<int, int> classify;
             std::vector<float> dist;
+            std::vector<float> temp;
+            int t, n;
+            int pred_one;
             while(first < x[0].size()-1){
                 for(int j = first+1; j<x[0].size(); j++){
                     second = j;
@@ -52,10 +79,34 @@ class KNNPredict{
                             distances[d].push_back(y[i][0]);
                         }
                     }
-                    dist = distances_extract(distances);
+                    temp = distances_extract(distances);
+                    dist = quickSort(temp);
+                    std::vector<float>().swap(temp);
+                    t = 0;
+                    n = 0;
+                    while(t < neighbors){
+                        for(int l = 0; l<distances[dist[n]].size(); l++){
+                            if(!(present_classify(classify, distances[dist[n]][l]))){
+                                classify[distances[dist[n]][l]] = 1;
+                            }else{
+                                classify[distances[dist[n]][l]] ++;
+                            }
+                            t ++;
+                        }
+                        n++;
+                    }
+                    pred_one = frequent_class(classify);
+                    classify.clear();
+                    std::vector<float>().swap(dist);
+                    distances.clear();
+                }
+                if(!(present_classify(classes, pred_one))){
+                    classes[pred_one] = 1;
+                }else{
+                    classes[pred_one] ++;
                 }
             }
-            return 0;
+            return frequent_class(classes);
         }
 
         std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x_pred){
