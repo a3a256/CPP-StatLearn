@@ -111,6 +111,9 @@ class KNNPredict{
 
         std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x_pred){
             std::vector<std::vector<int>> pred;
+            for(int i = 0; i<x_pred.size(); i++){
+                pred.push_back({predict_one(x_pred[i])});
+            }
             return pred;
         }
 };
