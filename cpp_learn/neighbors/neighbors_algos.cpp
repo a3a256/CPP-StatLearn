@@ -56,7 +56,7 @@ class KNNPredict{
         int predict_one(std::vector<float> pred){
             float x_axis;
             float y_axis;
-            int first;
+            int first=0;
             int second;
             float d;
             std::map<int, int> classes;
@@ -105,6 +105,7 @@ class KNNPredict{
                 }else{
                     classes[pred_one] ++;
                 }
+                first ++;
             }
             return frequent_class(classes);
         }
