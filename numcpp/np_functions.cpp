@@ -330,21 +330,22 @@ std::vector<float> standard_deviation(std::vector<std::vector<float>> arr){
     return r;
 }
 
-std::vector<float> variance(std::vector<std::vector<float>> x){
-    std::vector<float> res;
+float variance(std::vector<float> x){
+    float res;
     std::vector<float> means;
-    means = mean_calculate(x, (int)0);
+    std::vector<std::vector<float>> temp;
+    temp.push_back(x);
+    means = mean_calculate(temp, (int)0);
     float val = 0.0f;
 
-    for(int i = 0; i<x[0].size(); i++){
-        for(int j = 0; j<x.size(); j++){
-            val += pow(x[j][i]-means[i], 2);
-        }
-        res.push_back(val/(float)x.size());
-        val = 0.0f;
+    for(int i = 0; i<x.size(); i++){
+        val += pow(x[i]-means[0], 2);
     }
 
+    res = val/(float)x.size();
+
     std::vector<float>().swap(means);
+    std::vector<std::vector<float>>().swap(temp);
 
     return res;
 
@@ -374,7 +375,7 @@ float covariance(std::vector<float> x, std::vector<float> y){
 std::vector<std::vector<float>> cov(std::vector<std::vector<float>> arr){
     std::vector<std::vector<float>> res;
     std::vector<float> row;
-    std::vector<std::vector<float>> temp;
+    std::vector<float> temp;
     std::vector<float> x;
     std::vector<float> y;
     float val;
@@ -389,11 +390,19 @@ std::vector<std::vector<float>> cov(std::vector<std::vector<float>> arr){
                 }
             }
             if(i == k){
-                temp.push_back(x);
-                val = variance(temp)[0];
+                temp.push_back(variance(x));
+            }else{
+                temp.push_back(covariance(x, y));
             }
+            std::vector<float>().swap(x);
+            std::vector<float>().swap(y);
         }
+        res.push_back(temp);
+        std::vector<float>().swap(temp);
     }
+
+
+    return res;
 }
 
 std::vector<float> sort(std::vector<float> left, std::vector<float> right, float pivot){

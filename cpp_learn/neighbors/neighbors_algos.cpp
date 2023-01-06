@@ -33,6 +33,8 @@ int frequent_class(std::map<int, int> dict){
             return it->first;
         }
     }
+
+    return _max;
 }
 
 float distance_calculate(float x1, float y1, float x2, float y2){
