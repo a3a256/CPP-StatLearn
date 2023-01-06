@@ -1,6 +1,20 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_cov(){
+    std::vector<std::vector<float>> arr {{5.1f, 6.5f}, {8.9f, 3.4f}, {9.9f, 12.0f}};
+    std::vector<std::vector<float>> res;
+    res = cov(arr);
+
+    for(int i = 0; i<res.size(); i++){
+        for(int j = 0; j<res[0].size(); j++){
+            std::cout << res[i][j] << ' ';
+        }
+        std::cout << "\n";
+    }
+    // std::cout << "\n";
+}
+
 void test_std(){
     std::vector<std::vector<float>> arr {{5.1f, 6.5f}, {8.9f, 3.4f}, {9.9f, 12.0f}};
     std::vector<float> res;
@@ -51,6 +65,6 @@ void t_test(){
 }
 
 int main(){
-    test_std();
+    test_cov();
     return 0;
 }
