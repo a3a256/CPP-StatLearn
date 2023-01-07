@@ -1,6 +1,12 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_det(){
+    std::vector<std::vector<float>> arr {{1.2f, 1.6f, 2.7f}, {3.1f, 8.4f, 5.7f}, {2.1f, 2.5f, 6.7f}};
+    float dt = determinant(arr);
+    std::cout << dt << "\n";
+}
+
 void test_cov(){
     std::vector<std::vector<float>> arr {{5.1f, 6.5f}, {8.9f, 3.4f}, {9.9f, 12.0f}};
     std::vector<std::vector<float>> res;
@@ -65,6 +71,6 @@ void t_test(){
 }
 
 int main(){
-    test_cov();
+    test_det();
     return 0;
 }

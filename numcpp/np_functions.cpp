@@ -150,24 +150,27 @@ std::vector<std::vector<float>> eye(std::vector<int> dim){
     return res;
 }
 
-float determinant(float arr[][1000], int rows, int cols){
+float determinant(std::vector<std::vector<float>> arr){
     float det = 0.0f;
-    if(rows == 2 && cols == 2){
+    if(arr.size() == 2 && arr[0].size() == 2){
         det = arr[0][0]*arr[1][1] - arr[0][1]*arr[1][0];
         return det;
     }
-    for(int i = 0; i<cols; i++){
-        static float new_arr[1000][1000];
-        // new_arr = new float*[1000];
-        for(int j = 0; j<rows; j++){
-            for(int z  = 0; z<cols; z++){
+    std::vector<std::vector<float>> new_arr;
+    std::vector<float> temp;
+    for(int i = 0; i<arr[0].size(); i++){
+        for(int j = 0; j<arr.size(); j++){
+            for(int z  = 0; z<arr[0].size(); z++){
                 if(j != 0 && z != i){
-                    new_arr[j-1][z] = arr[j][z];
+                    temp.push_back(arr[j][z]);
                 }
             }
+            new_arr.push_back(temp);
+            std::vector<float>().swap(temp);
         }
-        std::cout << pow(-1, (1+i+1));
-        det += pow(-1, (1+i+1))*arr[0][i]*determinant(new_arr, rows-1, cols-1);
+        // std::cout << pow(-1, (1+i+1));
+        det += pow(-1, (1+i+1))*arr[0][i]*determinant(new_arr);
+        std::vector<std::vector<float>>().swap(new_arr);
     }
     return det;
 }
