@@ -3,6 +3,14 @@
 // #include "cpp_learn/activate.h"
 // #include "cpp_learn/naive_bayes/activate.h"
 #include "cpp_learn/neighbors/activate.h"
+#include "cpp_learn/metrics/activate.h"
+
+void test_mse(){
+    std::vector<std::vector<float>> y_pred {{1.2f}, {3.4f}, {6.3f}};
+    std::vector<std::vector<float>> y_test {{3.9f}, {8.9f}, {1.2f}};
+
+    std::cout << mean_squared_error(y_pred, y_test);
+}
 
 void test_knn_classifier(){
     std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}};
@@ -97,7 +105,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_knn_classifier();
+    test_mse();
 
     return 0;
 }
