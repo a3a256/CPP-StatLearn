@@ -1,3 +1,4 @@
+#pragma once
 #include "np_functions.cpp"
 #include <vector>
 

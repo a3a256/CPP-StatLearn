@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-// #include "../../numcpp/np_define.h"
+#include "../../numcpp/np_define.h"
 // #ifndef mean_calculate();
 // #define mean_calculate();
 // #endif
