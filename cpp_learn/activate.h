@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "linear_model/linear_regression.cpp"
 #include <vector>

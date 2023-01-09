@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include "neighbors_algos.cpp"
