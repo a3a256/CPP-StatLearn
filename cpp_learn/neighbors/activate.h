@@ -20,3 +20,20 @@ class KNeighborsClassifier{
             return knn.predict_vals(x);
         }
 };
+
+class KNeighborsRegressor{
+    public:
+        int n_neighbors = 1;
+        std::vector<std::vector<float>> x_train;
+        std::vector<std::vector<int>> y_train;
+
+        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
+            x_train = x;
+            y_train = y;
+        }
+
+        std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x){
+            std::vector<std::vector<int>> k;
+            return k;
+        }
+};
