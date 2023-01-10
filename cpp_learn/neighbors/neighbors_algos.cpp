@@ -120,3 +120,51 @@ class KNNPredict{
             return pred;
         }
 };
+
+
+class KNNRegression{
+    public:
+        std::vector<std::vector<float>> y;
+        std::vector<std::vector<float>> x;
+        int neighbors=1;
+
+    private:
+
+        std::vector<float> extract_distance_keys(std::map<float, std::vector<float>> dict){
+            std::vector<float> temp;
+            for(std::map<float, std::vector<float>>::iterator it = dict.begin(); it != dict.end(); ++it){
+                temp.push_back(it->first);
+            }
+            return temp;
+        }
+
+        float predict_one(std::vector<float> x_test){
+            std::vector<float> predictions;
+            std::map<float, std::vector<float>> distances;
+            std::vector<float> dist;
+            std::vector<std::vector<float>> temp;
+            std::vector<float> vals;
+            float distance;
+            int k;
+            int t;
+            for(int j = 0; j < x[0].size(); j++){
+                for(int i = 0; i < x.size(); i++){
+                    distance = abs(x[i][j] - x_test[j]);
+                    distances[distance].push_back(y[i][0]);
+                }
+                dist = extract_distance_keys(distances);
+                k = 0;
+                t = 0;
+                while(k < neighbors){
+                    for(int p = 0; p < distances[dist[t]].size(); p++){
+                        vals.push_back(distances[dist[t]][p]);
+                        k ++;
+                    }
+                    t ++;
+                }
+                temp.push_back(vals);
+                predictions.push_back(mean_calculate(temp, (int)0)[0]);
+                std::vector<float>().swap();
+            }
+        }
+};
