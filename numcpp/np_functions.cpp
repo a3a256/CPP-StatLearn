@@ -195,16 +195,19 @@ float** multiply_matrix(float arr1[][1000], float arr2[][1000], int rows1, int r
 
 std::vector<std::vector<float>> dot(std::vector<std::vector<float>> arr1, std::vector<std::vector<float>> arr2){
     std::vector<std::vector<float>> res;
+    float _sum;
+    std::vector<float> temp;
     for(int i = 0; i < arr1.size(); i++){
-        std::vector<float> temp;
-        float _sum=0;
+        _sum=0;
         for(int j = 0; j<arr2[0].size(); j++){
+            _sum = 0.0f;
             for(int k = 0; k<arr1[0].size(); k++){
                 _sum += arr1[i][k]*arr2[k][i];
             }
             temp.push_back(_sum);
         }
         res.push_back(temp);
+        std::vector<float>().swap(temp);
     }
     std::vector<std::vector<float>>().swap(arr1);
     std::vector<std::vector<float>>().swap(arr2);
