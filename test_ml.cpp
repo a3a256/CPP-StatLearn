@@ -12,6 +12,27 @@ void test_mse(){
     std::cout << mean_squared_error(y_pred, y_test);
 }
 
+void test_knnr(){
+
+    std::vector<std::vector<float>> x {{3.4f, 2.3f}, {2.1f, 3.9f}};
+    std::vector<std::vector<float>> y {{6.5f}, {3.8f}};
+    std::vector<std::vector<float>> test{{2.9f, 3.2f}};
+
+    KNeighborsRegressor knnr;
+
+    knnr.n_neighbors = 1;
+
+    knnr.fit(x, y);
+
+    std::vector<std::vector<float>> res;
+    res = knnr.predict(test);
+
+    for(int i = 0; i<res[0].size(); i++){
+        std::cout<<res[0][i] << "\n";
+    }
+
+}
+
 void test_knn_classifier(){
     std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}};
     std::vector<std::vector<int>> y {{0}, {1}, {0}, {1}};
@@ -105,7 +126,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_mse();
+    test_knnr();
 
     return 0;
 }

@@ -128,6 +128,15 @@ class KNNRegression{
         std::vector<std::vector<float>> x;
         int neighbors=1;
 
+        std::vector<std::vector<float>> predict_vals(std::vector<std::vector<float>> to_pred){
+            std::vector<std::vector<float>> pred;
+            for(int i = 0; i<to_pred.size(); i++){
+                pred.push_back({predict_one(to_pred[i])});
+            }
+
+            return pred;
+        }
+
     private:
 
         std::vector<float> extract_distance_keys(std::map<float, std::vector<float>> dict){

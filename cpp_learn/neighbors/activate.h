@@ -24,16 +24,15 @@ class KNeighborsClassifier{
 class KNeighborsRegressor{
     public:
         int n_neighbors = 1;
-        std::vector<std::vector<float>> x_train;
-        std::vector<std::vector<int>> y_train;
+        KNNRegression knr;
 
-        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
-            x_train = x;
-            y_train = y;
+        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
+            knr.x = x;
+            knr.y = y;
+            knr.neighbors = n_neighbors;
         }
 
-        std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x){
-            std::vector<std::vector<int>> k;
-            return k;
+        std::vector<std::vector<float>> predict(std::vector<std::vector<float>> pr){
+            return knr.predict_vals(pr);
         }
 };
