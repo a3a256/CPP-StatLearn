@@ -135,6 +135,7 @@ class KNNRegression{
             for(std::map<float, std::vector<float>>::iterator it = dict.begin(); it != dict.end(); ++it){
                 temp.push_back(it->first);
             }
+            dict.clear();
             return temp;
         }
 
@@ -164,7 +165,13 @@ class KNNRegression{
                 }
                 temp.push_back(vals);
                 predictions.push_back(mean_calculate(temp, (int)0)[0]);
-                std::vector<float>().swap();
+                std::vector<std::vector<float>>().swap(temp);
+                std::vector<float>().swap(vals);
+                distances.clear();
+                std::vector<float>().swap(dist);
             }
+            temp.push_back(predictions);
+
+            return mean_calculate(temp, (int)0)[0];
         }
 };
