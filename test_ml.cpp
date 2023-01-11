@@ -5,6 +5,13 @@
 #include "cpp_learn/neighbors/activate.h"
 #include "cpp_learn/metrics/activate.h"
 
+void test_accuracy_score(){
+    std::vector<std::vector<int>> y1 {{0}, {1}, {1}, {0}, {0}};
+    std::vector<std::vector<int>> y2 {{1}, {1}, {1}, {0}, {1}};
+
+    std::cout << accuracy_score(y1, y2) << "\n";
+}
+
 void test_mse(){
     std::vector<std::vector<float>> y_pred {{1.2f}, {3.4f}, {6.3f}};
     std::vector<std::vector<float>> y_test {{3.9f}, {8.9f}, {1.2f}};
@@ -126,7 +133,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_knnr();
+    test_accuracy_score();
 
     return 0;
 }
