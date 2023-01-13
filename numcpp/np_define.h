@@ -27,3 +27,4 @@ std::vector<std::vector<float>> transpose();
 float covariance();
 std::vector<float> variance();
 std::vector<float> quickSort();
+std::vector<std::vector<float>> inv();

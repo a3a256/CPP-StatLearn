@@ -2,6 +2,13 @@
 #include "../../numcpp/np_define.h"
 #include <vector>
 
+//OLS Regression
+
+std::vector<std::vector<float>> ols_fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
+    std::vector<std::vector<float>> weights;
+    return weights;
+}
+
 // Linear Regression
 
 std::vector<std::vector<float>> optimize(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y, float alpha, int epochs){

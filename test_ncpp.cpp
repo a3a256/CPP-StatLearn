@@ -1,6 +1,18 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_inv(){
+    std::vector<std::vector<float>> arr {{1.2f, 1.6f, 2.7f}, {3.1f, 8.4f, 5.7f}, {2.1f, 2.5f, 6.7f}};
+    std::vector<std::vector<float>> inverse;
+    inverse = inv(arr);
+    for(int i = 0; i<inverse.size(); i++){
+        for(int j = 0; j < inverse[0].size(); j++){
+            std::cout << inverse[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
 void test_det(){
     std::vector<std::vector<float>> arr {{1.2f, 1.6f, 2.7f}, {3.1f, 8.4f, 5.7f}, {2.1f, 2.5f, 6.7f}};
     float dt = determinant(arr);
@@ -71,6 +83,6 @@ void t_test(){
 }
 
 int main(){
-    test_det();
+    test_inv();
     return 0;
 }

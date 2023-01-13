@@ -176,6 +176,18 @@ float determinant(std::vector<std::vector<float>> arr){
 }
 
 
+std::vector<std::vector<float>> inv(std::vector<std::vector<float>> matrix){
+    float det = 1/determinant(matrix);
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j < matrix[0].size(); j++){
+            matrix[i][j] *= det;
+        }
+    }
+
+    return matrix;
+}
+
+
 
 float** multiply_matrix(float arr1[][1000], float arr2[][1000], int rows1, int rows2, int cols1, int cols2){
     static float** new_arr = 0;
