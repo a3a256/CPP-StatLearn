@@ -152,16 +152,15 @@ std::vector<std::vector<float>> eye(std::vector<int> dim){
 
 float determinant(std::vector<std::vector<float>> arr){
     float det = 0.0f;
-    if(arr.size() == 2 && arr[0].size() == 2){
-        det = arr[0][0]*arr[1][1] - arr[0][1]*arr[1][0];
-        return det;
+    if(arr.size() == 1){
+        return arr[0][0];
     }
     std::vector<std::vector<float>> new_arr;
     std::vector<float> temp;
     for(int i = 0; i<arr[0].size(); i++){
-        for(int j = 0; j<arr.size(); j++){
+        for(int j = 1; j<arr.size(); j++){
             for(int z  = 0; z<arr[0].size(); z++){
-                if(j != 0 && z != i){
+                if(z != i){
                     temp.push_back(arr[j][z]);
                 }
             }
@@ -170,6 +169,7 @@ float determinant(std::vector<std::vector<float>> arr){
         }
         // std::cout << pow(-1, (1+i+1));
         det += pow(-1, (1+i+1))*arr[0][i]*determinant(new_arr);
+        // std::cout << det << "\n";
         std::vector<std::vector<float>>().swap(new_arr);
     }
     return det;
