@@ -175,16 +175,48 @@ float determinant(std::vector<std::vector<float>> arr){
     return det;
 }
 
+// Inverse of a matrix
+
+std::vector<std::vector<float>> cofactor_matrix(std::vector<std::vector<float>> matrix){
+    std::vector<std::vector<float>> new_matrix;
+    std::vector<float> row;
+    std::vector<std::vector<float>> temp_matrix;
+    std::vector<float> temp_row;
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j<matrix[0].size(); j++){
+            for(int z = 0; z < matrix.size(); z++){
+                if(z != i){
+                    for(int k = 0; k<matrix[0].size(); k++){
+                        if(k != j){
+                            temp_row.push_back(matrix[z][k]);
+                        }
+                    }
+                    temp_matrix.push_back(temp_row);
+                    std::vector<float>().swap(temp_row);
+                }
+            }
+            row.push_back(determinant(temp_matrix));
+            std::vector<std::vector<float>>().swap(temp_matrix);
+        }
+        new_matrix.push_back(row);
+        std::vector<float>().swap(row);
+    }
+
+    return new_matrix;
+}
+
 
 std::vector<std::vector<float>> inv(std::vector<std::vector<float>> matrix){
     float det = 1/determinant(matrix);
-    for(int i = 0; i<matrix.size(); i++){
-        for(int j = 0; j < matrix[0].size(); j++){
-            matrix[i][j] *= det;
+    std::vector<std::vector<float>> cofactor;
+    cofactor = cofactor_matrix(matrix);
+    for(int i = 0; i<cofactor.size(); i++){
+        for(int j = 0; j < cofactor[0].size(); j++){
+            cofactor[i][j] *= det;
         }
     }
-
-    return matrix;
+    std::vector<std::vector<float>>().swap(matrix);
+    return cofactor;
 }
 
 
