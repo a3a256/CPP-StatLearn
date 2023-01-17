@@ -10,6 +10,12 @@ std::vector<std::vector<float>> ols_fit(std::vector<std::vector<float>> x, std::
     return weights;
 }
 
+std::vector<std::vector<float>> ols_predict(std::vector<std::vector<float>> x, std::vector<std::vector<float>> weights){
+    std::vector<std::vector<float>> res;
+    res = dot(x, weights);
+    return res;
+}
+
 // Linear Regression
 
 std::vector<std::vector<float>> optimize(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y, float alpha, int epochs){

@@ -1,9 +1,30 @@
 #include <iostream>
 #include <iomanip>
-// #include "cpp_learn/activate.h"
-// #include "cpp_learn/naive_bayes/activate.h"
+#include "cpp_learn/activate.h"
+#include "cpp_learn/naive_bayes/activate.h"
 #include "cpp_learn/neighbors/activate.h"
 #include "cpp_learn/metrics/activate.h"
+
+void test_ols_regression(){
+    std::vector<std::vector<float>> x {{3.4f, 2.3f}, {2.1f, 3.9f}};
+    std::vector<std::vector<float>> y {{6.5f}, {3.8f}};
+    std::vector<std::vector<float>> test{{2.9f, 3.2f}};
+
+    OLSRegression lr;
+
+    std::vector<std::vector<float>> res;
+
+    lr.fit(x, y);
+
+    res = lr.predict(test);
+
+    for(int i = 0; i<res.size(); i++){
+        for(int j = 0; j<res[0].size(); j++){
+            std::cout << res[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
 
 void test_accuracy_score(){
     std::vector<std::vector<int>> y1 {{0}, {1}, {1}, {0}, {0}};
@@ -133,7 +154,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_accuracy_score();
+    test_ols_regression();
 
     return 0;
 }

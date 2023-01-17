@@ -10,6 +10,20 @@ class Weights{
         std::vector<std::vector<float>> linear_weights;
 };
 
+class OLSRegression{
+    private:
+        Weights weights;
+
+    public:
+        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
+            weights.linear_weights = ols_predict(x, y);
+        }
+
+        std::vector<std::vector<float>> predict(std::vector<std::vector<float>> x){
+            return ols_predict(x, weights.linear_weights);
+        }
+};
+
 class LinearRegression{
 
     private:
