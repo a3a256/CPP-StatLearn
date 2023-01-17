@@ -6,6 +6,7 @@
 
 std::vector<std::vector<float>> ols_fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
     std::vector<std::vector<float>> weights;
+    weights = dot(dot(inv(dot(transpose(x), x)), transpose(x)), y);
     return weights;
 }
 
