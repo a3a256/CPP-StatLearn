@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cmath>
 #include <vector>
+#include <tuple>
 // all functions are redefined all of a sudden, needs further search into the topic
 std::vector<std::vector<int>> square(std::vector<std::vector<int>> vec){
     for(int i = 0; i<vec.size(); i++){
@@ -283,6 +284,127 @@ std::vector<std::vector<float>> transpose(std::vector<std::vector<float>> arr){
         res.push_back(temp);
     }
     return res;
+}
+
+std::vector<std::vector<float>> copy2d(std::vector<std::vector<float>> m){
+    std::vector<std::vector<float>> _new;
+    std::vector<float> temp;
+    for(int i = 0; i<m.size(); i++){
+        for(int j = 0; j<m[0].size(); j++){
+            temp.push_back(m[i][j]);
+        }
+        _new.push_back(temp);
+        std::vector<float>().swap(temp);
+    }
+
+    return _new;
+}
+
+float l2_norm(std::vector<float> vec){
+    float _sum = 0;
+    for(int i = 0; i<vec.size(); i++){
+        _sum += pow(vec.at(i), 2);
+    }
+
+    return pow(_sum, 0.5);
+}
+
+std::tuple<std::vector<std::vector<float>>, std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> matrix){
+    int length = matrix.size();
+    std::vector<std::vector<std::vector<float>>> h_matrices;
+    int common_length = matrix.size();
+    std::vector<std::vector<float>> e;
+    std::vector<float> temp;
+    std::vector<std::vector<float>> sliced_matrix;
+    std::vector<float> a;
+    std::vector<std::vector<float>> v;
+    std::vector<std::vector<float>> upper;
+    std::vector<std::vector<float>> cop;
+    std::vector<std::vector<float>> r;
+    std::vector<std::vector<float>> ref_e;
+    r = copy2d(matrix);
+    int si, sj, l2;
+    float lower;
+    for(int i = 0; i<matrix.size(); i++){
+        e = eye(std::vector<int> {length});
+        for(int j = i; j<matrix.size(); j++){
+            for(int k = i; k<matrix.size(); k++){
+                temp.push_back(r[i][j]);
+            }
+            sliced_matrix.push_back(temp);
+            std::vector<float>().swap(temp);
+        }
+        for(int k = 0; k<matrix.size(); k++){
+            a.push_back(matrix[k][i]);
+        }
+        l2 = l2_norm(a);
+        for(int k = 0; k<e.size(); k++){
+            if(r[i][i] >= 0){
+                temp.push_back(sliced_matrix[k][0] + e[k][0]*l2);
+            }else{
+                temp.push_back(sliced_matrix[k][0] - e[k][0]*l2);
+            }
+        }
+        v.push_back(temp);
+        std::vector<float>().swap(temp);
+        upper = dot(transpose(v), v);
+        lower = dot(v, transpose(v))[0][0];
+        for(int j = 0; j<upper.size(); j++){
+            for(int k = 0; k<upper[0].size(); k++){
+                e[j][k] -= 2*(upper[j][k]/lower);
+            }
+        }
+
+        si = 0;
+        for(int k = 0; k<common_length; k++){
+            sj = 0;
+            for(int j = 0; j<common_length; j++){
+                if(k >= i){
+                    if(j >= i){
+                        temp.push_back(e[si][sj]);
+                        sj ++;
+                    }else{
+                        temp.push_back(0);
+                    }
+                }else{
+                    if(k == j){
+                        temp.push_back(1);
+                    }else{
+                        temp.push_back(0);
+                    }
+                }
+            }
+            ref_e.push_back(temp);
+            std::vector<float>().swap(temp);
+            if(k >= i){
+                si ++;
+            }
+        }
+
+        cop = dot(ref_e, r);
+        std::vector<std::vector<float>>().swap(r);
+        std::vector<std::vector<float>>().swap(sliced_matrix);
+        r = copy2d(cop);
+        h_matrices.push_back(ref_e);
+        std::vector<std::vector<float>>().swap(ref_e);
+        std::vector<std::vector<float>>().swap(upper);
+        std::vector<std::vector<float>>().swap(v);
+        std::vector<std::vector<float>>().swap(e);
+        std::vector<float>().swap(a);
+        std::vector<std::vector<float>>().swap(cop);
+        length --;
+    }
+
+    std::vector<std::vector<float>> q;
+    q = copy2d(h_matrices[0]);
+    std::vector<std::vector<float>> temp_q;
+    for(int i = 1; i<h_matrices.size(); i++){
+        temp_q = dot(q, h_matrices[i]);
+        std::vector<std::vector<float>>().swap(q);
+        q = copy2d(h_matrices[i]);
+    }
+
+    return {q, r};
 }
 
 
