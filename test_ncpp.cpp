@@ -1,6 +1,38 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_qr(){
+    std::vector<std::vector<float>> arr {{2, -2, 18}, {2, 1, 0}, {1, 2, 0}};
+    std::vector<std::vector<float>> q;
+    std::vector<std::vector<float>> r;
+    auto [q, r] = qr(arr);
+    for(int i = 0; i<arr.size(); i++){
+        for(int j = 0; j < arr[0].size(); j++){
+            std::cout << arr[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
+void test_feats(){
+    std::vector<std::vector<float>> arr {{1.2f, 1.6f, 2.7f}, {3.1f, 8.4f, 5.7f}, {2.1f, 2.5f, 6.7f}};
+    for(int i = 0; i<arr.size(); i++){
+        for(int j = 0; j < arr[0].size(); j++){
+            std::cout << arr[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+
+    arr = inv(arr);
+
+    for(int i = 0; i<arr.size(); i++){
+        for(int j = 0; j < arr[0].size(); j++){
+            std::cout << arr[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
 void test_inv(){
     std::vector<std::vector<float>> arr {{1.2f, 1.6f, 2.7f}, {3.1f, 8.4f, 5.7f}, {2.1f, 2.5f, 6.7f}};
     std::vector<std::vector<float>> inverse;
@@ -83,6 +115,6 @@ void t_test(){
 }
 
 int main(){
-    test_inv();
+    test_feats();
     return 0;
 }
