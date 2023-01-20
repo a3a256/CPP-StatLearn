@@ -309,7 +309,7 @@ float l2_norm(std::vector<float> vec){
     return pow(_sum, 0.5);
 }
 
-auto qr(std::vector<std::vector<float>> matrix) -> std::tuple<std::vector<std::vector<float>>, std::vector<std::vector<float>>>{
+std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> matrix){
     int length = matrix.size();
     std::vector<std::vector<std::vector<float>>> h_matrices;
     int common_length = matrix.size();
@@ -403,6 +403,10 @@ auto qr(std::vector<std::vector<float>> matrix) -> std::tuple<std::vector<std::v
         std::vector<std::vector<float>>().swap(q);
         q = copy2d(h_matrices[i]);
     }
+
+    std::vector<std::vector<std::vector<float>>> end;
+    end.push_back(temp_q);
+    end.push_back(r);
 
     return {q, r};
 }

@@ -5,10 +5,13 @@ void test_qr(){
     std::vector<std::vector<float>> arr {{2, -2, 18}, {2, 1, 0}, {1, 2, 0}};
     std::vector<std::vector<float>> q;
     std::vector<std::vector<float>> r;
-    auto [q, r] = qr(arr);
-    for(int i = 0; i<arr.size(); i++){
-        for(int j = 0; j < arr[0].size(); j++){
-            std::cout << arr[i][j] << " ";
+    std::vector<std::vector<std::vector<float>>> q_r;
+    q_r = qr(arr);
+    q = q_r[0];
+    r = q_r[1];
+    for(int i = 0; i<q.size(); i++){
+        for(int j = 0; j < q[0].size(); j++){
+            std::cout << q[i][j] << " ";
         }
         std::cout << "\n";
     }
@@ -115,6 +118,6 @@ void t_test(){
 }
 
 int main(){
-    test_feats();
+    test_qr();
     return 0;
 }
