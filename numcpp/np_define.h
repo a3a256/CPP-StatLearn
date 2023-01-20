@@ -28,4 +28,4 @@ float covariance();
 std::vector<float> variance();
 std::vector<float> quickSort();
 std::vector<std::vector<float>> inv();
-std::tuple<std::vector<std::vector<float>>, std::vector<std::vector<float>>> qr();
+auto qr();
