@@ -326,7 +326,7 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     int si, sj, l2;
     float lower;
     for(int i = 0; i<matrix.size(); i++){
-        e = eye(std::vector<int> {length});
+        e = eye(length);
         for(int j = i; j<matrix.size(); j++){
             for(int k = i; k<matrix.size(); k++){
                 temp.push_back(r[i][j]);
