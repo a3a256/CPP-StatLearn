@@ -127,19 +127,11 @@ std::vector<float> quantiles(std::vector<float> arr){
     return quantile;
 }
 
-std::vector<std::vector<float>> eye(std::vector<int> dim){
+std::vector<std::vector<float>> eye(int dim){
     std::vector<std::vector<float>> res;
-    int rows, columns;
-    if(dim.size() == 1){
-        rows = dim.at(0);
-        columns = dim.at(0);
-    }else{
-        rows = dim.at(0);
-        columns = dim.at(1);
-    }
-    for(int i = 0; i<rows; i++){
+    for(int i = 0; i<dim; i++){
         std::vector<float> temp;
-        for(int j = 0; j<columns; j++){
+        for(int j = 0; j<dim; j++){
             if(i == j){
                 temp.push_back((float)1);
             }else{
