@@ -239,7 +239,7 @@ std::vector<std::vector<float>> dot(std::vector<std::vector<float>> arr1, std::v
         for(int j = 0; j<arr2[0].size(); j++){
             _sum = 0.0f;
             for(int k = 0; k<arr1[0].size(); k++){
-                _sum += arr1[i][k]*arr2[k][i];
+                _sum += arr1[i][k]*arr2[k][j];
             }
             temp.push_back(_sum);
         }
@@ -315,13 +315,14 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     std::vector<std::vector<float>> r;
     std::vector<std::vector<float>> ref_e;
     r = copy2d(matrix);
-    int si, sj, l2;
+    int si, sj;
+    float l2;
     float lower;
     for(int i = 0; i<matrix.size(); i++){
         e = eye(length);
         for(int j = i; j<matrix.size(); j++){
             for(int k = i; k<matrix.size(); k++){
-                temp.push_back(r[i][j]);
+                temp.push_back(r[j][k]);
             }
             sliced_matrix.push_back(temp);
             std::vector<float>().swap(temp);
@@ -331,12 +332,18 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
         }
         l2 = l2_norm(a);
         for(int k = 0; k<e.size(); k++){
+            std::cout << sliced_matrix[k][0] << " ";
             if(r[i][i] >= 0){
                 temp.push_back(sliced_matrix[k][0] + e[k][0]*l2);
             }else{
                 temp.push_back(sliced_matrix[k][0] - e[k][0]*l2);
             }
         }
+        std::cout << "\n";
+        for(int k = 0; k<temp.size(); k++){
+            std::cout << temp[k] << " ";
+        }
+        std::cout << "\n";
         v.push_back(temp);
         std::vector<float>().swap(temp);
         upper = dot(transpose(v), v);
@@ -374,6 +381,15 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
         }
 
         cop = dot(ref_e, r);
+
+        for(int k = 0; k<cop.size(); k++){
+            for(int j = 0; j<cop[0].size(); j++){
+                std::cout << cop[k][j] << " ";
+            }
+            std::cout << "\n";
+        }
+
+        std::cout << "\n";
         std::vector<std::vector<float>>().swap(r);
         std::vector<std::vector<float>>().swap(sliced_matrix);
         r = copy2d(cop);
