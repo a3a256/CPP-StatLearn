@@ -118,6 +118,7 @@ void t_test(){
 }
 
 int main(){
+    std::cout << "end\n";
     test_qr();
     return 0;
 }

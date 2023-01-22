@@ -323,6 +323,8 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     std::vector<std::vector<float>> cop;
     std::vector<std::vector<float>> r;
     std::vector<std::vector<float>> ref_e;
+    std::vector<std::vector<float>> new_q;
+    bool first = true;
     r = copy2d(matrix);
     int si, sj;
     float l2;
@@ -402,6 +404,11 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
         std::vector<std::vector<float>>().swap(r);
         std::vector<std::vector<float>>().swap(sliced_matrix);
         r = copy2d(cop);
+        if(first){
+            new_q = ref_e;
+        }else{
+            new_q = dot(new_q, ref_e);
+        }
         h_matrices.push_back(ref_e);
         std::vector<std::vector<float>>().swap(ref_e);
         std::vector<std::vector<float>>().swap(upper);
@@ -418,27 +425,29 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     out_matrix(q);
     std::cout << "second\n";
     std::vector<std::vector<float>> temp_q;
-    temp_q = dot(dot(h_matrices[0], h_matrices[1]), h_matrices[2]);
-    for(int i = 0; i<temp_q.size(); i++){
-        for(int j = 0; j<temp_q[0].size(); j++){
-            std::cout << temp_q[i][j] << " ";
-        }
-        std::cout << "\n";
-    }
+    // temp_q = dot(dot(h_matrices[0], h_matrices[1]), h_matrices[2]);
+    // for(int i = 0; i<temp_q.size(); i++){
+    //     for(int j = 0; j<temp_q[0].size(); j++){
+    //         std::cout << temp_q[i][j] << " ";
+    //     }
+    //     std::cout << "\n";
+    // }
     std::cout << "-----\n";
-    out_matrix(q);
-    for(int i = 1; i<h_matrices.size(); i++){
-        temp_q = dot(q, h_matrices[i]);
-        out_matrix(temp_q);
-        q = copy2d(h_matrices[i]);
-    }
+    // out_matrix(q);
+    // for(int i = 1; i<h_matrices.size(); i++){
+    //     temp_q = dot(q, h_matrices[i]);
+    //     out_matrix(temp_q);
+    //     q = copy2d(h_matrices[i]);
+    // }
     std::cout << "--------\n";
-    out_matrix(temp_q);
+    out_matrix(q);
     std::cout << "\n";
 
     std::vector<std::vector<std::vector<float>>> end;
-    end.push_back(temp_q);
+    end.push_back(q);
     end.push_back(r);
+    std::cout << "why?";
+    out_matrix(end[0]);
 
     return end;
 }
