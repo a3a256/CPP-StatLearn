@@ -301,6 +301,15 @@ float l2_norm(std::vector<float> vec){
     return pow(_sum, 0.5);
 }
 
+void out_matrix(std::vector<std::vector<float>> arr){
+    for(int i = 0; i<arr.size(); i++){
+        for(int j = 0; j<arr[0].size(); j++){
+            std::cout << arr[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
 std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> matrix){
     int length = matrix.size();
     std::vector<std::vector<std::vector<float>>> h_matrices;
@@ -404,7 +413,10 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     }
 
     std::vector<std::vector<float>> q;
-    q = copy2d(h_matrices[0]);
+    q = h_matrices[0];
+    std::cout << "first\n";
+    out_matrix(q);
+    std::cout << "second\n";
     std::vector<std::vector<float>> temp_q;
     temp_q = dot(dot(h_matrices[0], h_matrices[1]), h_matrices[2]);
     for(int i = 0; i<temp_q.size(); i++){
@@ -413,12 +425,16 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
         }
         std::cout << "\n";
     }
+    std::cout << "-----\n";
+    out_matrix(q);
     for(int i = 1; i<h_matrices.size(); i++){
-        std::vector<std::vector<float>>().swap(temp_q);
         temp_q = dot(q, h_matrices[i]);
-        // std::vector<std::vector<float>>().swap(q);
+        out_matrix(temp_q);
         q = copy2d(h_matrices[i]);
     }
+    std::cout << "--------\n";
+    out_matrix(temp_q);
+    std::cout << "\n";
 
     std::vector<std::vector<std::vector<float>>> end;
     end.push_back(temp_q);
