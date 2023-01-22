@@ -406,9 +406,17 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     std::vector<std::vector<float>> q;
     q = copy2d(h_matrices[0]);
     std::vector<std::vector<float>> temp_q;
+    temp_q = dot(dot(h_matrices[0], h_matrices[1]), h_matrices[2]);
+    for(int i = 0; i<temp_q.size(); i++){
+        for(int j = 0; j<temp_q[0].size(); j++){
+            std::cout << temp_q[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
     for(int i = 1; i<h_matrices.size(); i++){
+        std::vector<std::vector<float>>().swap(temp_q);
         temp_q = dot(q, h_matrices[i]);
-        std::vector<std::vector<float>>().swap(q);
+        // std::vector<std::vector<float>>().swap(q);
         q = copy2d(h_matrices[i]);
     }
 
@@ -416,7 +424,7 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     end.push_back(temp_q);
     end.push_back(r);
 
-    return {q, r};
+    return end;
 }
 
 
