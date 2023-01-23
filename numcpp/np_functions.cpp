@@ -406,6 +406,7 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
         r = copy2d(cop);
         if(first){
             new_q = ref_e;
+            first = false;
         }else{
             new_q = dot(new_q, ref_e);
         }
