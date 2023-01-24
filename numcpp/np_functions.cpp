@@ -453,6 +453,28 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     return end;
 }
 
+std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
+    std::vector<std::vector<float>> qq;
+    std::vector<std::vector<float>> ak;
+    std::vector<std::vector<float>> shift;
+    std::vector<std::vector<float>> iden;
+    std::vector<float> temp;
+    float s;
+    qq = eye(matrix.size());
+    ak = matrix;
+    for(int skip = 0; skip<5000; skip++){
+        s = ak[ak.size()-1][ak.size()-1];
+        iden = eye(qq.size());
+        for(int i = 0; i<iden.size(); i++){
+            for(int j = 0; j<iden[0].size(); j++){
+                temp.push_back(iden[i][j]*s);
+            }
+            shift.push_back(temp);
+            std::vector<float>().swap(temp);
+        }
+    }
+}
+
 
 float* addition_1d(float arr[], float arr2[], int size){
 
