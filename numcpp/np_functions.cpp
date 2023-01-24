@@ -5,6 +5,18 @@
 #include <vector>
 #include <tuple>
 // all functions are redefined all of a sudden, needs further search into the topic
+std::vector<float> diag(std::vector<std::vector<float>> matrix){
+    std::vector<float> di;
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j<matrix[0].size(); j++){
+            if(i == j){
+                di.push_back(matrix[i][j]);
+            }
+        }
+    }
+    return di;
+}
+
 std::vector<std::vector<int>> square(std::vector<std::vector<int>> vec){
     for(int i = 0; i<vec.size(); i++){
         for(int j = 0; j<vec[0].size(); j++){
@@ -455,24 +467,53 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
 
 std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
     std::vector<std::vector<float>> qq;
+    std::vector<std::vector<float>> q;
+    std::vector<std::vector<float>> r;
     std::vector<std::vector<float>> ak;
+    std::vector<std::vector<float>> temp_a;
     std::vector<std::vector<float>> shift;
+    std::vector<std::vector<float>> reverse;
     std::vector<std::vector<float>> iden;
+    std::vector<std::vector<std::vector<float>>> res;
     std::vector<float> temp;
     float s;
+    int i, j;
     qq = eye(matrix.size());
     ak = matrix;
     for(int skip = 0; skip<5000; skip++){
         s = ak[ak.size()-1][ak.size()-1];
         iden = eye(qq.size());
-        for(int i = 0; i<iden.size(); i++){
-            for(int j = 0; j<iden[0].size(); j++){
+        for(i = 0; i<iden.size(); i++){
+            for(j = 0; j<iden[0].size(); j++){
                 temp.push_back(iden[i][j]*s);
             }
             shift.push_back(temp);
             std::vector<float>().swap(temp);
         }
+        temp_a = ak;
+        for(i = 0; i<ak.size(); i++){
+            for(j = 0; j<ak[0].size(); j++){
+                temp_a[i][j] -= shift[i][j];
+            }
+        }
+
+        res = qr(temp_a);
+        q = res[0];
+        r = res[1];
+
+        reverse = dot(r, q);
+
+        for(i = 0; i<ak.size(); i++){
+            for(j = 0; j<ak[0].size(); j++){
+                ak[i][j] = reverse[i][j] + shift[i][j];
+            }
+        }
+
+        qq = dot(qq, q);
     }
+
+    return diag(q);
+
 }
 
 
