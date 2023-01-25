@@ -465,6 +465,25 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     return end;
 }
 
+bool is_traingular(std::vector<std::vector<float>> matrix){
+    std::vector<float> below_diag;
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j<matrix[0].size(); j++){
+            if(j < i){
+                below_diag.push_back(matrix[i][j]);
+            }
+        }
+    }
+
+    float tol = pow(10, -7);
+    for(int i = 0; i<below_diag.size(); i++){
+        if(abs(below_diag[i] - 0) > tol){
+            return false;
+        }
+    }
+    return true;
+}
+
 std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
     std::vector<std::vector<float>> qq;
     std::vector<std::vector<float>> q;
@@ -510,6 +529,10 @@ std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
         }
 
         qq = dot(qq, q);
+
+        if(is_traingular(ak)){
+            break;
+        }
     }
 
     return diag(q);
