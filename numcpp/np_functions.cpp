@@ -535,7 +535,7 @@ std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
         }
     }
 
-    return diag(q);
+    return diag(ak);
 
 }
 

@@ -1,6 +1,18 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_eigenvalues(){
+    std::vector<std::vector<float>> arr {{1.2, 3.1, 6.7, 7.7}, {5.3, 6.6, 1.9, 2.2}, {4.5, 7.2, 8.9, 6.6}, {3.7, 8.1, 9, 1}};
+    std::vector<float> q;
+    q = eigenvalues(arr);
+    std::cout << "Result\n";
+    for(int i = 0; i<q.size(); i++){
+        std::cout << q[i] << " ";
+    }
+    std::cout << "\n";
+    // 21.0886 -3.96097 1.68533 -1.11292 
+}
+
 void test_qr(){
     std::vector<std::vector<float>> arr {{2, -2, 18}, {2, 1, 0}, {1, 2, 0}};
     std::vector<std::vector<float>> q;
@@ -118,7 +130,6 @@ void t_test(){
 }
 
 int main(){
-    std::cout << "end\n";
-    test_qr();
+    test_eigenvalues();
     return 0;
 }
