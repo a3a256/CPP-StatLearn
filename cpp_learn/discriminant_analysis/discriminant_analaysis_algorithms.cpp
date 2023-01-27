@@ -5,4 +5,5 @@
 class LinearDiscriminantAnalysis{
     private:
         std::vector<std::vector<std::vector<float>>> cov_matrices;
+        std::vector<std::vector<float>> means;
 };
