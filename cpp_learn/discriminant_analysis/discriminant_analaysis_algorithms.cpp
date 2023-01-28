@@ -41,3 +41,14 @@ std::vector<std::vector<float>> fit_mean_lda(std::vector<std::vector<float>> x, 
 
     return means;
 }
+
+std::vector<float> calculate_piors(std::vector<std::vector<int>> y){
+    std::vector<int> categories_counts;
+    categories_counts = bincount(y);
+    std::vector<float> priors;
+    int length = y.size();
+    for(int i = 0; i<categories_counts.size(); i++){
+        priors.push_back((float)categories_counts[i]/(float)length);
+    }
+    return priors;
+}
