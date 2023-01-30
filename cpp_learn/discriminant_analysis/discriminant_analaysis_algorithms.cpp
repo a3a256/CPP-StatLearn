@@ -52,3 +52,7 @@ std::vector<float> calculate_piors(std::vector<std::vector<int>> y){
     }
     return priors;
 }
+
+int predict_lda_one(std::vector<std::vector<float>> x){
+    std::vector<float> res;
+}
