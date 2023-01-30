@@ -53,6 +53,14 @@ std::vector<float> calculate_piors(std::vector<std::vector<int>> y){
     return priors;
 }
 
-int predict_lda_one(std::vector<std::vector<float>> x){
+int predict_lda_one(std::vector<float> x, std::vector<std::vector<float>> means, std::vector<std::vector<std::vector<float>>> covariances, std::vector<float>priors){
     std::vector<float> res;
+    std::vector<std::vector<float>> mean_temp;
+    std::vector<std::vector<float>> temp_x;
+    float first, second, end;
+    for(int i = 0; i<priors.size(); i++){
+        temp_x.push_back(x);
+        mean_temp.push_back(means[i]);
+        first = dot(dot(mean_temp, covariances[i]), transpose(temp_x))[0][0];
+    }
 }
