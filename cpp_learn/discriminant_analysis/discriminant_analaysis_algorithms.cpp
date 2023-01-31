@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 #include "../../numcpp/np_define.h"
 
 
@@ -61,6 +62,11 @@ int predict_lda_one(std::vector<float> x, std::vector<std::vector<float>> means,
     for(int i = 0; i<priors.size(); i++){
         temp_x.push_back(x);
         mean_temp.push_back(means[i]);
-        first = dot(dot(mean_temp, covariances[i]), transpose(temp_x))[0][0];
+        first = dot(dot(mean_temp, inv(covariances[i])), transpose(temp_x))[0][0];
+        second = 0.5*(dot(dot(mean_temp, inv(covariances[i])), transpose(mean_temp))[0][0]);
+        end = log(priors[i]);
+        res.push_back(first + second + end);
     }
+
+    return argmax(res);
 }
