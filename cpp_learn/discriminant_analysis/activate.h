@@ -17,4 +17,13 @@ class LinearDiscriminantAnalysis{
             means = fit_mean_lda(x, y);
             priors = calculate_piors(y);
         }
+
+        std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x){
+            std::vector<std::vector<int>> predicted;
+            for(int i = 0; i<x.size(); i++){
+                predicted.push_back({predict_lda_one(x[i], means, covariances, priors)});
+            }
+
+            return predicted;
+        }
 };
