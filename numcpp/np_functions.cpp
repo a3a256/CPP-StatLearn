@@ -484,7 +484,7 @@ bool is_traingular(std::vector<std::vector<float>> matrix){
     return true;
 }
 
-std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
+std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector<float>> matrix){
     std::vector<std::vector<float>> qq;
     std::vector<std::vector<float>> q;
     std::vector<std::vector<float>> r;
@@ -494,6 +494,7 @@ std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
     std::vector<std::vector<float>> reverse;
     std::vector<std::vector<float>> iden;
     std::vector<std::vector<std::vector<float>>> res;
+    std::vector<std::vector<std::vector<float>>> vals;
     std::vector<float> temp;
     float s;
     int i, j;
@@ -534,8 +535,12 @@ std::vector<float> eigenvalues(std::vector<std::vector<float>> matrix){
             break;
         }
     }
+    std::vector<std::vector<float>> eig_values {diag(ak)};
 
-    return diag(ak);
+    vals.push_back(eig_values);
+    vals.push_back(qq);
+
+    return vals;
 
 }
 
