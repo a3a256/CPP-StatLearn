@@ -30,4 +30,4 @@ std::vector<float> quickSort();
 std::vector<std::vector<float>> inv();
 std::vector<std::vector<std::vector<float>>> qr();
 std::vector<float> diag();
-std::vector<float> eigenvalues();
+std::vector<std::vector<std::vector<float>>> eigenvalues();

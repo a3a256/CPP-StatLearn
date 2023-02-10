@@ -1,15 +1,38 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_cov_eigenvalues(){
+    std::vector<std::vector<float>> arr {{5.1f, 6.5f}, {8.9f, 3.4f}, {9.9f, 12.0f}};
+    std::vector<std::vector<float>> covariance;
+    covariance = cov(arr);
+    std::vector<std::vector<std::vector<float>>> results;
+    results = eigenvalues(covariance);
+    std::vector<float> vals;
+    vals = results[0][0];
+    std::vector<std::vector<float>> vecs;
+    vecs = results[1];
+    for(int i = 0; i<vals.size(); i++){
+        std::cout << vals[i] << " ";
+    }
+    std::cout << "\n";
+
+    for(int i = 0; i<vecs.size(); i++){
+        for(int j = 0; j<vecs[0].size(); j++){
+            std::cout << vecs[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
 void test_eigenvalues(){
     std::vector<std::vector<float>> arr {{1.2, 3.1, 6.7, 7.7}, {5.3, 6.6, 1.9, 2.2}, {4.5, 7.2, 8.9, 6.6}, {3.7, 8.1, 9, 1}};
     std::vector<float> q;
-    q = eigenvalues(arr);
-    std::cout << "Result\n";
-    for(int i = 0; i<q.size(); i++){
-        std::cout << q[i] << " ";
-    }
-    std::cout << "\n";
+    // q = eigenvalues(arr);
+    // std::cout << "Result\n";
+    // for(int i = 0; i<q.size(); i++){
+    //     std::cout << q[i] << " ";
+    // }
+    // std::cout << "\n";
     // 21.0886 -3.96097 1.68533 -1.11292 
 }
 
@@ -130,6 +153,6 @@ void t_test(){
 }
 
 int main(){
-    test_eigenvalues();
+    test_cov_eigenvalues();
     return 0;
 }
