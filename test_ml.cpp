@@ -5,6 +5,13 @@
 #include "cpp_learn/neighbors/activate.h"
 #include "cpp_learn/metrics/activate.h"
 
+void test_mae(){
+    std::vector<std::vector<float>> y_pred {{1.2f}, {3.4f}, {6.3f}};
+    std::vector<std::vector<float>> y_test {{3.9f}, {8.9f}, {1.2f}};
+
+    std::cout << mean_absolute_error(y_pred, y_test);
+}
+
 void test_ols_regression(){
     std::vector<std::vector<float>> x {{3.4f, 2.3f}, {2.1f, 3.9f}};
     std::vector<std::vector<float>> y {{6.5f}, {3.8f}};
@@ -154,7 +161,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_ols_regression();
+    test_mae();
 
     return 0;
 }
