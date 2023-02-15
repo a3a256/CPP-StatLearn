@@ -11,7 +11,7 @@ class SGDSVC{
 
     public:
 
-        std::vector<std::vector<float>> fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, float lr, int epochs, float C){
+        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, float lr, int epochs, float C){
             std::vector<float> temp;
             std::vector<std::vector<float>> temp_d;
             std::vector<std::vector<float>> grad;
@@ -46,8 +46,26 @@ class SGDSVC{
                     std::vector<float>().swap(temp);
                 }
             }
+        }
 
 
-            return weights;
+        std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x){
+            std::vector<std::vector<int>> y;
+            std::vector<std::vector<float>> temp;
+            float pred;
+            for(int i = 0; i<x.size(); i++){
+                temp.push_back(x[i]);
+                pred = dot(temp, transpose(weights))[0][0];
+                if(pred > 0){
+                    y.push_back({1});
+                }else if(pred < 0){
+                    y.push_back({0});
+                }
+
+                std::vector<std::vector<float>>().swap(temp);
+            }
+
+
+            return y;
         }
 };
