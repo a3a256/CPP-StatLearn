@@ -5,11 +5,14 @@
 
 
 class SGDSVMClassifier{
+
+    private:
+        SGDSVC svc;
+
     public:
         float lr = 0.01;
         float C = 1;
         int epochs = 20;
-        SGDSVC svc;
 
         void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
             svc.fit(x, y, lr, epochs, C);
