@@ -487,15 +487,29 @@ bool is_traingular(std::vector<std::vector<float>> matrix){
 std::vector<float> cramer_for_eigenvectors(std::vector<std::vector<float>> matrix){
     std::vector<float> answers;
     std::vector<float> arguments;
-    int i = 0;
-    for(i = 0; i < matrix.size(); i++){
-        answers.push_back(0);
-    }
+    std::vector<std::vector<float>> temp_m;
+    std::vector<float> temp;
+    matrix.pop_back();
+    int i, j;
 
     arguments.push_back(1);
-    for(i = 0; i<matrix.size()-1; i++){
+    for(i = 0; i<matrix.size(); i++){
         answers.push_back((float)(-1)*matrix[i][0]);
+        matrix[i].erase(matrix[i].begin()+0);
     }
+
+    float orig_det = determinant(matrix);
+
+    for(i = 0; i<matrix.size(); i++){
+        temp_m = matrix;
+        for(j = 0; j<matrix.size(); j++){
+            temp_m[j][i] = answers[i];
+        }
+
+        arguments.push_back(determinant(temp_m)/orig_det);
+    }
+
+    return arguments;
 }
 
 std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector<float>> matrix){
