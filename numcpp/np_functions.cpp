@@ -565,6 +565,17 @@ std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector
     }
     std::vector<std::vector<float>> eig_values {diag(ak)};
 
+    std::vector<std::vector<float>> eigvectors;
+    std::vector<std::vector<float>> temp_matrix;
+    int sign = 1;
+    for(i = 0; i<eig_values[0].size(); i++){
+        temp_matrix = matrix;
+        for(j = 0; j<matrix.size(); j++){
+            temp_matrix[j][j] -= eig_values[0][i];
+        }
+        eigvectors.push_back(cramer_for_eigenvectors(temp_matrix));
+    }
+
     vals.push_back(eig_values);
     vals.push_back(qq);
 
