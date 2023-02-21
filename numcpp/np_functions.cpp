@@ -512,6 +512,18 @@ std::vector<float> cramer_for_eigenvectors(std::vector<std::vector<float>> matri
     return arguments;
 }
 
+bool is_symmetric(std::vector<std::vector<float>> matrix){
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j<matrix[0].size(); j++){
+            if(matrix[i][j] != matrix[j][i]){
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector<float>> matrix){
     std::vector<std::vector<float>> qq;
     std::vector<std::vector<float>> q;
@@ -573,10 +585,22 @@ std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector
         for(j = 0; j<matrix.size(); j++){
             temp_matrix[j][j] -= eig_values[0][i];
         }
-        eigvectors.push_back(cramer_for_eigenvectors(temp_matrix));
+        temp = cramer_for_eigenvectors(temp_matrix);
+        for(j = 0; j<temp.size(); j++){
+            if(sign == 1){
+                temp[j] *= (float)(-1)*l2_norm(temp);
+            }else{
+                temp[j] *= l2_norm(temp);
+            }
+        }
+        sign ++;
+        eigvectors.push_back(temp);
     }
 
+    std::vector<float>().swap(temp);
+
     vals.push_back(eig_values);
+    
     vals.push_back(qq);
 
     return vals;
