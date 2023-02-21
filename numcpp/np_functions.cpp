@@ -600,8 +600,11 @@ std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector
     std::vector<float>().swap(temp);
 
     vals.push_back(eig_values);
-    
-    vals.push_back(qq);
+    if(is_symmetric(matrix)){
+        vals.push_back(qq);
+    }else{
+        vals.push_back(transpose(eigvectors));
+    }
 
     return vals;
 
