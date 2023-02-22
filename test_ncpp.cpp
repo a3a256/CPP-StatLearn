@@ -9,6 +9,7 @@ void test_eig(){
     vals = results[0][0];
     std::vector<std::vector<float>> vecs;
     vecs = results[1];
+    std::cout << "result\n";
     for(int i = 0; i<vals.size(); i++){
         std::cout << vals[i] << " ";
     }

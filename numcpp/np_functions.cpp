@@ -355,18 +355,12 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
         }
         l2 = l2_norm(a);
         for(int k = 0; k<e.size(); k++){
-            std::cout << sliced_matrix[k][0] << " ";
             if(r[i][i] >= 0){
                 temp.push_back(sliced_matrix[k][0] + e[k][0]*l2);
             }else{
                 temp.push_back(sliced_matrix[k][0] - e[k][0]*l2);
             }
         }
-        std::cout << "\n";
-        for(int k = 0; k<temp.size(); k++){
-            std::cout << temp[k] << " ";
-        }
-        std::cout << "\n";
         v.push_back(temp);
         std::vector<float>().swap(temp);
         upper = dot(transpose(v), v);
@@ -404,15 +398,6 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
         }
 
         cop = dot(ref_e, r);
-
-        for(int k = 0; k<cop.size(); k++){
-            for(int j = 0; j<cop[0].size(); j++){
-                std::cout << cop[k][j] << " ";
-            }
-            std::cout << "\n";
-        }
-
-        std::cout << "\n";
         std::vector<std::vector<float>>().swap(r);
         std::vector<std::vector<float>>().swap(sliced_matrix);
         r = copy2d(cop);
@@ -459,8 +444,6 @@ std::vector<std::vector<std::vector<float>>> qr(std::vector<std::vector<float>> 
     std::vector<std::vector<std::vector<float>>> end;
     end.push_back(new_q);
     end.push_back(r);
-    std::cout << "why?";
-    out_matrix(end[0]);
 
     return end;
 }
@@ -542,7 +525,7 @@ std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector
     ak = matrix;
     for(int skip = 0; skip<5000; skip++){
         s = ak[ak.size()-1][ak.size()-1];
-        iden = eye(qq.size());
+        iden = eye(matrix.size());
         for(i = 0; i<iden.size(); i++){
             for(j = 0; j<iden[0].size(); j++){
                 temp.push_back(iden[i][j]*s);
@@ -571,6 +554,8 @@ std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector
 
         qq = dot(qq, q);
 
+        std::vector<std::vector<float>>().swap(shift);
+
         if(is_traingular(ak)){
             break;
         }
@@ -588,13 +573,14 @@ std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector
         temp = cramer_for_eigenvectors(temp_matrix);
         for(j = 0; j<temp.size(); j++){
             if(sign == 1){
-                temp[j] *= (float)(-1)*l2_norm(temp);
+                temp[j] *= (float)(-1)/l2_norm(temp);
             }else{
-                temp[j] *= l2_norm(temp);
+                temp[j] /= l2_norm(temp);
             }
         }
         sign ++;
         eigvectors.push_back(temp);
+        std::vector<float>().swap(temp);
     }
 
     std::vector<float>().swap(temp);
