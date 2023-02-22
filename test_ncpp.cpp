@@ -1,6 +1,27 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_eig(){
+    std::vector<std::vector<float>> matrix {{-16.0, -28.0, -19.0}, {42.0, 69.0, 46.0}, {-42.0, -72.0, -49.0}};
+    std::vector<std::vector<std::vector<float>>> results;
+    results = eigenvalues(matrix);
+    std::vector<float> vals;
+    vals = results[0][0];
+    std::vector<std::vector<float>> vecs;
+    vecs = results[1];
+    for(int i = 0; i<vals.size(); i++){
+        std::cout << vals[i] << " ";
+    }
+    std::cout << "\n";
+
+    for(int i = 0; i<vecs.size(); i++){
+        for(int j = 0; j<vecs[0].size(); j++){
+            std::cout << vecs[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
 void test_cov_eigenvalues(){
     std::vector<std::vector<float>> arr {{5.1f, 6.5f}, {8.9f, 3.4f}, {9.9f, 12.0f}};
     std::vector<std::vector<float>> covariance;
@@ -153,6 +174,6 @@ void t_test(){
 }
 
 int main(){
-    test_cov_eigenvalues();
+    test_eig();
     return 0;
 }
