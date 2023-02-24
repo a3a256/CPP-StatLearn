@@ -39,7 +39,7 @@ void test_ols_regression(){
     std::vector<std::vector<float>> y {{6.5f}, {3.8f}};
     std::vector<std::vector<float>> test{{2.9f, 3.2f}};
 
-    OLSRegression lr;
+    LinearRegression lr;
 
     std::vector<std::vector<float>> res;
 

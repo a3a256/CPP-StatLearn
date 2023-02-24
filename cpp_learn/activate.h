@@ -10,7 +10,7 @@ class Weights{
         std::vector<std::vector<float>> linear_weights;
 };
 
-class OLSRegression{
+class LinearRegression{
     private:
         Weights weights;
 
@@ -24,7 +24,7 @@ class OLSRegression{
         }
 };
 
-class LinearRegression{
+class SGDRegression{
 
     private:
         Weights weights;
