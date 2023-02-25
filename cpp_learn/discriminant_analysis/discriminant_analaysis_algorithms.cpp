@@ -70,3 +70,7 @@ int predict_lda_one(std::vector<float> x, std::vector<std::vector<float>> means,
 
     return argmax(res);
 }
+
+int predict_qda_one(std::vector<std::vector<float>> x, std::vector<std::vector<float>> means, std::vector<std::vector<std::vector<float>>> covariances, std::vector<float>priors){
+    return 0;
+}
