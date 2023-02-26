@@ -71,6 +71,26 @@ int predict_lda_one(std::vector<float> x, std::vector<std::vector<float>> means,
     return argmax(res);
 }
 
-int predict_qda_one(std::vector<std::vector<float>> x, std::vector<std::vector<float>> means, std::vector<std::vector<std::vector<float>>> covariances, std::vector<float>priors){
-    return 0;
+int predict_qda_one(std::vector<float> x, std::vector<std::vector<float>> means, std::vector<std::vector<std::vector<float>>> covariances, std::vector<float>priors){
+    std::vector<float> res;
+    std::vector<float> temp;
+    std::vector<std::vector<float>> sub2_1;
+    std::vector<std::vector<float>> sub2_2;
+    int i;
+    int j;
+    float first, second, third, end;
+    for(i=0; i<priors.size(); i++){
+        first = (-0.5f)*log(determinant(covariances[i]));
+        for(j=0; j<x.size(); j++){
+            temp.push_back(x[j] - means[i][j]);
+        }
+        sub2_1.push_back(temp);
+        std::vector<float>().swap(temp);
+        sub2_2 = inv(covariances[i]);
+        second = (0.5f)*dot(dot(sub2_1, sub2_2), transpose(sub2_1))[0][0];
+        third = log(priors[i]);
+        end = first + second + third;
+        res.push_back(end);
+    }
+    return argmax(res);
 }
