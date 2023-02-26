@@ -4,7 +4,7 @@
 #include "../../numcpp/np_define.h"
 
 
-std::vector<std::vector<std::vector<float>>> fit_cov_lda(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
+std::vector<std::vector<std::vector<float>>> fit_covs(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
     std::vector<int> categories;
     categories = unique(y);
     std::vector<std::vector<std::vector<float>>> cov_matrices;
@@ -24,7 +24,7 @@ std::vector<std::vector<std::vector<float>>> fit_cov_lda(std::vector<std::vector
     return cov_matrices;
 }
 
-std::vector<std::vector<float>> fit_mean_lda(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
+std::vector<std::vector<float>> fit_means(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
     std::vector<int> categories;
     categories = unique(y);
     std::vector<std::vector<float>> means;
