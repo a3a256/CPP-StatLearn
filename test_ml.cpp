@@ -5,6 +5,25 @@
 #include "cpp_learn/neighbors/activate.h"
 #include "cpp_learn/metrics/activate.h"
 #include "cpp_learn/svm/activate.h"
+#include "cpp_learn/discriminant_analysis/activate.h"
+
+void test_logistic_discriminant_classifier(){
+    std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}, {4.5f, 8.1f}, {2.5f, 4.1f}};
+    std::vector<std::vector<int>> y {{0}, {1}, {0}, {1}, {0}, {1}};
+    std::vector<std::vector<float>> x_test {{2.6f, 7.1f}, {7.9f, 9.9f}};
+
+    LinearDiscriminantAnalysis lda;
+    lda.fit(x, y);
+
+    std::vector<std::vector<int>> res;
+
+    res = lda.predict(x_test);
+
+    for(int i = 0; i<res.size(); i++){
+        std::cout << "Result " << res[i][0] << "\n";
+    }
+
+}
 
 void test_svc_classifier(){
     std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}};
@@ -183,7 +202,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_svc_classifier();
+    test_logistic_discriminant_classifier();
 
     return 0;
 }
