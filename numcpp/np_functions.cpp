@@ -584,7 +584,7 @@ std::vector<std::vector<std::vector<float>>> eigenvalues(std::vector<std::vector
     }
 
     std::vector<float>().swap(temp);
-
+    out_matrix(ak);
     vals.push_back(eig_values);
     if(is_symmetric(matrix)){
         vals.push_back(qq);

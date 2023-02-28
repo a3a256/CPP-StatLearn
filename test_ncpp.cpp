@@ -1,6 +1,29 @@
 #include <iostream>
 #include "numcpp/np_define.h"
 
+void test_eig1(){
+    std::vector<std::vector<float>> matrix {{-6.0f, 3.0f}, {4.0f, 5.0f}};
+    std::vector<std::vector<std::vector<float>>> results;
+    results = eigenvalues(matrix);
+    std::vector<float> vals;
+    vals = results[0][0];
+    std::vector<std::vector<float>> vecs;
+    vecs = results[1];
+    std::cout << "result\n";
+    for(int i = 0; i<vals.size(); i++){
+        std::cout << vals[i] << " ";
+    }
+    std::cout << "\n";
+
+    for(int i = 0; i<vecs.size(); i++){
+        for(int j = 0; j<vecs[0].size(); j++){
+            std::cout << vecs[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
+
 void test_eig(){
     std::vector<std::vector<float>> matrix {{-16.0, -28.0, -19.0}, {42.0, 69.0, 46.0}, {-42.0, -72.0, -49.0}};
     std::vector<std::vector<std::vector<float>>> results;
@@ -175,6 +198,6 @@ void t_test(){
 }
 
 int main(){
-    test_eig();
+    test_eig1();
     return 0;
 }
