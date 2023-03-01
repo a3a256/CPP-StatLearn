@@ -79,3 +79,9 @@ class LogisticRegresssion{
 
 
 };
+
+
+class RidgeRegressor{
+    public:
+        std::vector<std::vector<float>> weight;
+};

@@ -147,3 +147,10 @@ std::vector<std::vector<int>> logistic_regression_predict(std::vector<std::vecto
 
     return res;
 }
+
+// RidgeRegressor
+
+
+std::vector<std::vector<float>> ridge_regressor_fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>>){
+    std::vector<std::vector<float>> weights;
+}
