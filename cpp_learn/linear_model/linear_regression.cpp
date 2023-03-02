@@ -151,6 +151,32 @@ std::vector<std::vector<int>> logistic_regression_predict(std::vector<std::vecto
 // RidgeRegressor
 
 
-std::vector<std::vector<float>> ridge_regressor_fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>>){
+std::vector<std::vector<float>> ridge_regressor_fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y, float alpha){
     std::vector<std::vector<float>> weights;
+    std::vector<std::vector<float>> identity;
+    std::vector<std::vector<float>> first;
+    std::vector<std::vector<float>> inverse;
+    std::vector<std::vector<float>> second;
+    identity = eye(x[0].size());
+    int i, j;
+    for(i = 0; i<identity.size(); i++){
+        for(j = 0; j<identity[0].size(); j++){
+            identity[i][j] *= alpha;
+        }
+    }
+
+    first = dot(transpose(x), x);
+
+    for(i = 0; i<first.size(); i++){
+        for(j = 0; j<first[0].size(); j++){
+            first[i][j] += identity[i][j];
+        }
+    }
+
+    inverse = inv(first);
+    second = dot(inverse, transpose(x));
+
+    weights = dot(second, y);
+
+    return weights;
 }
