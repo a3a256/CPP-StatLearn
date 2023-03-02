@@ -180,3 +180,8 @@ std::vector<std::vector<float>> ridge_regressor_fit(std::vector<std::vector<floa
 
     return weights;
 }
+
+
+std::vector<std::vector<float>> ridge_regressor_predict(std::vector<std::vector<float>> x, std::vector<std::vector<float>> weights){
+    return dot(x, transpose(weights));
+}
