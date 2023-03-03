@@ -84,4 +84,14 @@ class LogisticRegresssion{
 class RidgeRegressor{
     public:
         std::vector<std::vector<float>> weight;
+        float alpha = 0.1;
+
+
+        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
+            weight = ridge_regressor_fit(x, y, alpha);
+        }
+
+        std::vector<std::vector<float>> predict(std::vector<std::vector<float>> x){
+            return ridge_regressor_predict(x, weight);
+        }
 };
