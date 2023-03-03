@@ -7,6 +7,28 @@
 #include "cpp_learn/svm/activate.h"
 #include "cpp_learn/discriminant_analysis/activate.h"
 
+
+void test_ridge_regression(){
+    std::vector<std::vector<float>> x {{3.4f, 2.3f}, {2.1f, 3.9f}};
+    std::vector<std::vector<float>> y {{6.5f}, {3.8f}};
+    std::vector<std::vector<float>> test{{2.9f, 3.2f}};
+
+    RidgeRegressor rg;
+
+    std::vector<std::vector<float>> res;
+
+    rg.fit(x, y);
+
+    res = rg.predict(test);
+
+    for(int i = 0; i<res.size(); i++){
+        for(int j = 0; j<res[0].size(); j++){
+            std::cout << res[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
 void test_quadratic_discriminant_classifier(){
     std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}, {4.5f, 8.1f}, {2.5f, 4.1f}};
     std::vector<std::vector<int>> y {{0}, {1}, {0}, {1}, {0}, {1}};
@@ -220,7 +242,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_quadratic_discriminant_classifier();
+    test_ridge_regression();
 
     return 0;
 }
