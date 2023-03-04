@@ -200,6 +200,43 @@ std::vector<std::vector<float>> lg_equation(std::vector<std::vector<float>> x, s
     return res;
 }
 
-std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
-    return;
+std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, int n_iters){
+    std::vector<std::vector<float>> weights;
+    std::vector<std::vector<float>> inv_bracket;
+    std::vector<std::vector<float>> equation;
+    std::vector<std::vector<float>> iden;
+    std::vector<std::vector<float>> g;
+    std::vector<float> temp;
+    int i, j, k;
+    for(i = 0; i<x[0].size(); i++){
+        temp.push_back(1e-5);
+    }
+
+    weights.push_back(temp);
+    std::vector<float>().swap(temp);
+
+
+    for(i = 0; i<n_iters; i++){
+        g = lg_equation(x, weights);
+        iden = eye(x.size());
+        for(j = 0; j<g.size(); j++){
+            g[j][0] -= (float)y[j][0];
+        }
+        g = dot(inv(iden), g);
+        equation = dot(x, transpose(weights));
+        for(j = 0; j<equation.size(); j++){
+            equation[j][0] += g[j][0];
+        }
+
+        inv_bracket = inv(dot(dot(transpose(x), iden), x));
+        inv_bracket = dot(inv_bracket, transpose(x));
+        weights = transpose(dot(dot(inv_bracket, iden), equation));
+    }
+
+
+    std::vector<std::vector<float>>().swap(g);
+    std::vector<std::vector<float>>().swap(iden);
+    std::vector<std::vector<float>>().swap(equation);
+    std::vector<std::vector<float>>().swap(inv_bracket);
+    return weights;
 }
