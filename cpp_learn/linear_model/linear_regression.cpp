@@ -187,3 +187,19 @@ std::vector<std::vector<float>> ridge_regressor_predict(std::vector<std::vector<
     res = dot(x, weights);
     return res;
 }
+
+// Logistic Regression _ 1
+
+std::vector<std::vector<float>> lg_equation(std::vector<std::vector<float>> x, std::vector<std::vector<float>> weights){
+    std::vector<std::vector<float>> res;
+    res = dot(x, transpose(weights));
+    for(int i = 0; i<res.size(); i++){
+        res[i][0] = exp(res[i][0])/(1+exp(res[i][0]));
+    }
+
+    return res;
+}
+
+std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
+    return;
+}
