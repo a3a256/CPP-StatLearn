@@ -240,3 +240,19 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
     std::vector<std::vector<float>>().swap(inv_bracket);
     return weights;
 }
+
+
+std::vector<std::vector<float>> lg_predict(std::vector<std::vector<float>> x, std::vector<std::vector<float>> weights){
+    std::vector<std::vector<float>> res;
+    res = lg_equation(x, weights);
+    int i;
+    for(i = 0; i<res.size(); i++){
+        if(res[i][0] > 0.5){
+            res[i][0] = (float)1;
+        }else{
+            res[i][0] = (float)0;
+        }
+    }
+
+    return res;
+}
