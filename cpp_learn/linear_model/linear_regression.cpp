@@ -200,7 +200,7 @@ std::vector<std::vector<float>> lg_equation(std::vector<std::vector<float>> x, s
     return res;
 }
 
-std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, int n_iters){
+std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y, int n_iters){
     std::vector<std::vector<float>> weights;
     std::vector<std::vector<float>> inv_bracket;
     std::vector<std::vector<float>> equation;

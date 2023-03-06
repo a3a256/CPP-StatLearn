@@ -47,7 +47,7 @@ class SGDRegression{
 
 
 
-class LogisticRegresssion{
+class SGDLogisticRegresssion{
 
     private:
         Weights weights;
@@ -75,6 +75,27 @@ class LogisticRegresssion{
 
         std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x){
             return logistic_regression_predict(x, weights.linear_weights);
+        }
+
+
+};
+
+
+
+class LogisticRegression{
+
+    public:
+        std::vector<std::vector<float>> weights;
+        int n_iters;
+
+
+        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
+            weights = lg_regression_fit(x, y, n_iters);
+        }
+
+
+        std::vector<std::vector<float>> predict(std::vector<std::vector<float>> x){
+            return lg_predict(x, weights);
         }
 
 
