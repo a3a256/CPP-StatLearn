@@ -86,7 +86,7 @@ class LogisticRegression{
 
     public:
         std::vector<std::vector<float>> weights;
-        int n_iters;
+        int n_iters = 100;
 
 
         void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
