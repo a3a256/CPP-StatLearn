@@ -90,6 +90,7 @@ class LogisticRegression{
 
 
         void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
+            std::cout << "flag\n";
             weights = lg_regression_fit(x, y, n_iters);
         }
 

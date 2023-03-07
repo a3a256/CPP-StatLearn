@@ -214,7 +214,7 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
 
     weights.push_back(temp);
     std::vector<float>().swap(temp);
-
+    std::cout << "check\n";
 
     for(i = 0; i<n_iters; i++){
         g = lg_equation(x, weights);

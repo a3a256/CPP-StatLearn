@@ -7,6 +7,33 @@
 #include "cpp_learn/svm/activate.h"
 #include "cpp_learn/discriminant_analysis/activate.h"
 
+void test_lg_regression(){
+    std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}, {3.4f, 2.3f}, {2.1f, 3.9f}, {2.19f, 3.42f}, {12.3f, 2.5f}};
+    std::vector<std::vector<float>> y {{0}, {1}, {0}, {1}, {0}, {1}, {0}, {1}};
+    std::vector<std::vector<float>> x_test {{2.6f, 7.1f}};
+
+
+    LogisticRegression lg;
+
+    std::cout << "res\n";
+
+    lg.fit(x, y);
+
+    std::cout << "res\n";
+
+
+    std::vector<std::vector<float>> res;
+
+    res = lg.predict(x_test);
+
+    std::cout << "res\n";
+
+
+    for(int i = 0; i<res.size(); i++){
+        std::cout << res[i][0] << "\n";
+    }
+}
+
 
 void test_ridge_regression(){
     std::vector<std::vector<float>> x {{3.4f, 2.3f}, {2.1f, 3.9f}};
@@ -242,7 +269,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_ridge_regression();
+    test_lg_regression();
 
     return 0;
 }
