@@ -209,7 +209,7 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
     std::vector<float> temp;
     int i, j, k;
     for(i = 0; i<x[0].size(); i++){
-        temp.push_back(1e-5);
+        temp.push_back(1e-3);
     }
 
     weights.push_back(temp);
@@ -220,7 +220,7 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
         g = lg_equation(x, weights);
         iden = eye(x.size());
         for(j = 0; j<g.size(); j++){
-            g[j][0] -= (float)y[j][0];
+            g[j][0] -= y[j][0];
         }
         g = dot(inv(iden), g);
         equation = dot(x, transpose(weights));
@@ -231,6 +231,12 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
         inv_bracket = inv(dot(dot(transpose(x), iden), x));
         inv_bracket = dot(inv_bracket, transpose(x));
         weights = transpose(dot(dot(inv_bracket, iden), equation));
+        for(j = 0; j<weights.size(); j++){
+            for(k = 0; k<weights[0].size(); k++){
+                std::cout << weights[j][k] << ' ';
+            }
+            std::cout << "\n";
+        }
     }
 
 
@@ -238,6 +244,13 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
     std::vector<std::vector<float>>().swap(iden);
     std::vector<std::vector<float>>().swap(equation);
     std::vector<std::vector<float>>().swap(inv_bracket);
+
+    for(i = 0; i<weights.size(); i++){
+        for(j = 0; j<weights[0].size(); j++){
+            std::cout << weights[i][j] << ' ';
+        }
+        std::cout << "\n";
+    }
     return weights;
 }
 
