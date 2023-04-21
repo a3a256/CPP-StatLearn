@@ -209,7 +209,7 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
     std::vector<float> temp;
     int i, j, k;
     for(i = 0; i<x[0].size(); i++){
-        temp.push_back(1e-3);
+        temp.push_back(1e-2);
     }
 
     weights.push_back(temp);
