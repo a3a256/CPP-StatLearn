@@ -7,12 +7,12 @@ bool present_nulls(std::vector<std::vector<float>> x){
     int i, j;
     for(i=0; i<x.size(); i++){
         for(j=0; j<x[0].size(); j++){
-            if(isnan(x[i][j])){
-                return false;
+            if(std::isnan(x[i][j])){
+                return true;
             }
         }
     }
-    return true;
+    return false;
 }
 
 //OLS Regression
@@ -247,6 +247,12 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
         inv_bracket = inv(dot(dot(transpose(x), iden), x));
         inv_bracket = dot(inv_bracket, transpose(x));
         weights = transpose(dot(dot(inv_bracket, iden), equation));
+        if(!(present_nulls(weights))){
+            back_up = weights;
+        }else{
+            weights = back_up;
+            break;
+        }
         for(j = 0; j<weights.size(); j++){
             for(k = 0; k<weights[0].size(); k++){
                 std::cout << weights[j][k] << ' ';
