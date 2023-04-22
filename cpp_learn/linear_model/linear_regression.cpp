@@ -1,6 +1,19 @@
 #include <iostream>
 #include "../../numcpp/np_define.h"
 #include <vector>
+#include <cmath>
+
+bool present_nulls(std::vector<std::vector<float>> x){
+    int i, j;
+    for(i=0; i<x.size(); i++){
+        for(j=0; j<x[0].size(); j++){
+            if(isnan(x[i][j])){
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 //OLS Regression
 
@@ -211,8 +224,11 @@ std::vector<std::vector<float>> lg_regression_fit(std::vector<std::vector<float>
     for(i = 0; i<x[0].size(); i++){
         temp.push_back(1e-2);
     }
+    std::vector<std::vector<float>> back_up;
 
     weights.push_back(temp);
+
+    back_up = weights;
     std::vector<float>().swap(temp);
     std::cout << "check\n";
 
