@@ -45,6 +45,7 @@ std::vector<std::vector<float>> optimize(std::vector<std::vector<float>> x, std:
             temp.resize(0);
             temp.shrink_to_fit();
             std::vector<std::vector<float>> dis;
+            std::vector<std::vector<float>> backup;
 
 
             for(int i = 0; i<epochs; i++){
@@ -56,6 +57,12 @@ std::vector<std::vector<float>> optimize(std::vector<std::vector<float>> x, std:
                         weights[0][z] -= loss*alpha*weights[0][z];
                     }
                     dis.pop_back();
+                    if(!(present_nulls(weights))){
+                        backup = weights;
+                    }else{
+                        weights = backup;
+                        break;
+                    }
                 }
             }
             dis.resize(0);
