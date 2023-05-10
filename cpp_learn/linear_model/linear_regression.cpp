@@ -7,7 +7,7 @@ bool present_nulls(std::vector<std::vector<float>> x){
     int i, j;
     for(i=0; i<x.size(); i++){
         for(j=0; j<x[0].size(); j++){
-            if(std::isnan(x[i][j])){
+            if(std::isnan(x[i][j]) || std::isinf(x[i][j])){
                 return true;
             }
         }
@@ -39,7 +39,7 @@ std::vector<std::vector<float>> optimize(std::vector<std::vector<float>> x, std:
             float loss;
             std::vector<std::vector<float>> weights;
             for(int i = 0; i<columns; i++){
-                temp.push_back(0.00001f);
+                temp.push_back(0.01f);
             }
             weights.push_back(temp);
             temp.resize(0);
