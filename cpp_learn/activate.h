@@ -33,10 +33,17 @@ class SGDRegression{
     public:
 
         int epochs = 20;
-        float alpha = 0.01;
+        float alpha = 0.1;
 
         void fit(std::vector<std::vector<float>> x, std::vector<std::vector<float>> y){
             weights.linear_weights = optimize(x, y, alpha, epochs);
+            for(int i=0; i<weights.linear_weights.size(); i++){
+                for(int j = 0; j<weights.linear_weights[i].size(); j++){
+                    std::cout << weights.linear_weights[i][j] << " ";
+                }
+
+                std::cout << "\n";
+            }
         }
 
         std::vector<std::vector<float>> predict(std::vector<std::vector<float>> x){
