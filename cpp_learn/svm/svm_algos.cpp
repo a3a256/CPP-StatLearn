@@ -55,6 +55,13 @@ class SGDSVC{
                     for(int k = 0; k<x[0].size(); k++){
                         weights[0][k] -= lr*grad[0][k];
                     }
+
+                    if(is_null(weights)){
+                        weights = backup;
+                        break;
+                    }else{
+                        backup = weights;
+                    }
                     std::vector<std::vector<float>>().swap(grad);
                     std::vector<std::vector<float>>().swap(temp_d);
                     std::vector<float>().swap(temp);
