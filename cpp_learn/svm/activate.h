@@ -10,7 +10,7 @@ class SGDSVMClassifier{
         SGDSVC svc;
 
     public:
-        float lr = 0.01;
+        float lr = 0.1;
         float C = 1;
         int epochs = 20;
 

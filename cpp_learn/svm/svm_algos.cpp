@@ -3,6 +3,19 @@
 #include <math.h>
 #include "../../numcpp/np_define.h"
 
+bool is_null(std::vector<std::vector<float>> weight){
+    int i, j;
+    for(i=0; i<weight.size(); i++){
+        for(j=0; j<weight[0].size(); j++){
+            if(std::isnan(weight[i][j]) || std::isinf(weight[i][j])){
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 
 class SGDSVC{
     private:
@@ -14,6 +27,7 @@ class SGDSVC{
         void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, float lr, int epochs, float C){
             std::vector<float> temp;
             std::vector<std::vector<float>> temp_d;
+            std::vector<std::vector<float>> backup;
             std::vector<std::vector<float>> grad;
             int i, j;
             float error, grad_val;
