@@ -6,7 +6,7 @@
 bool is_null(std::vector<std::vector<float>> weight){
     int i, j;
     for(i=0; i<weight.size(); i++){
-        for(j=0; j<weight[0].size(); j++){
+        for(j=0; j<weight[i].size(); j++){
             if(std::isnan(weight[i][j]) || std::isinf(weight[i][j])){
                 return false;
             }
@@ -33,9 +33,10 @@ class SGDSVC{
             float error, grad_val;
             float hat;
             for(i = 0; i<x[0].size(); i++){
-                temp.push_back(0.001f);
+                temp.push_back(0.01f);
             }
             weights.push_back(temp);
+            backup = weights;
             std::vector<float>().swap(temp);
             bool end = false;
 
@@ -71,6 +72,14 @@ class SGDSVC{
                 if(end){
                     break;
                 }
+            }
+
+            for(i=0; i<weights.size(); i++){
+                for(j=0; j<weights[i].size(); j++){
+                    std::cout << weights[i][j] << " ";
+                }
+
+                std::cout <<"\n";
             }
         }
 
