@@ -263,7 +263,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    sgd_linear_regression();
+    test_svc_classifier();
 
     return 0;
 }
