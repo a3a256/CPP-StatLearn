@@ -87,8 +87,8 @@ void test_logistic_discriminant_classifier(){
 }
 
 void test_svc_classifier(){
-    std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}};
-    std::vector<std::vector<int>> y {{0}, {1}, {0}, {1}};
+    std::vector<std::vector<float>> x {{0.4f, 0.8f}, {0.3f, 0.55f}, {0.19f, 0.012f}, {0.2f, 0.73f}};
+    std::vector<std::vector<int>> y {{-1}, {1}, {-1}, {1}};
     std::vector<std::vector<float>> x_test {{2.6f, 7.1f}};
 
 

@@ -45,6 +45,7 @@ class SGDSVC{
                     temp_d.push_back(x[j]);
                     hat = dot(temp_d, transpose(weights))[0][0];
                     error = 1 - (float)y[j][0]*hat;
+                    std::cout << error << " Check error\n";
                     if(error <= 0){
                         grad = weights;
                     }else{
