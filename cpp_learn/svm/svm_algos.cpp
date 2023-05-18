@@ -39,6 +39,7 @@ class SGDSVC{
             backup = weights;
             std::vector<float>().swap(temp);
             bool end = false;
+            float loss;
 
             for(i = 0; i<epochs; i++){
                 for(j = 0; j<x.size(); j++){
@@ -48,7 +49,9 @@ class SGDSVC{
                     std::cout << error << " Check error\n";
                     if(error <= 0){
                         grad = weights;
+                        loss = 0.0f;
                     }else{
+                        loss = error;
                         for(int k = 0; k<x[0].size(); k++){
                             temp.push_back(weights[0][k] - C*(float)y[j][0]*x[j][k]);
                         }
@@ -56,7 +59,7 @@ class SGDSVC{
                     }
 
                     for(int k = 0; k<x[0].size(); k++){
-                        weights[0][k] -= lr*grad[0][k];
+                        weights[0][k] -= lr*weights[0][k]*loss;
                     }
                     std::vector<std::vector<float>>().swap(grad);
                     std::vector<std::vector<float>>().swap(temp_d);
