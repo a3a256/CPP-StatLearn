@@ -24,7 +24,7 @@ class SGDSVC{
 
     public:
 
-        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, float lr, int epochs, float C){
+        void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y, float lr, int epochs){
             std::vector<float> temp;
             std::vector<std::vector<float>> temp_d;
             std::vector<std::vector<float>> backup;
@@ -53,7 +53,7 @@ class SGDSVC{
                     }else{
                         loss = error;
                         for(int k = 0; k<x[0].size(); k++){
-                            temp.push_back(weights[0][k] - C*(float)y[j][0]*x[j][k]);
+                            temp.push_back(weights[0][k] - (float)y[j][0]*x[j][k]);
                         }
                         grad.push_back(temp);
                     }
