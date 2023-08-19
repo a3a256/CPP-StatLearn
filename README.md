@@ -8,6 +8,12 @@
     * implemented &#x2713;
     * tested &#x2717;
 
-* Logistic Regress:
+* Logistic Regression:
     * implemented &#x2713;
     * tested &#x2717;
+ 
+### Neighbors:
+
+* K-Nearest Neighbors Classification:
+    * implemented &#x2713;
+    * tested &#x2713;
