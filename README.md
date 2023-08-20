@@ -4,7 +4,11 @@
 
 ### Linear models:
 
-* Linear Regression: 
+* Linear Regression(OLS): 
+    * implemented &#x2713;
+    * tested &#x2713;
+
+* Linear Regression(SGD): 
     * implemented &#x2713;
     * tested &#x2717;
 
