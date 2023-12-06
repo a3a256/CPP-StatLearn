@@ -23,5 +23,5 @@
     * tested &#x2713;
 ### K-Means Clustering:
 * K-Means Clustering:
-    * implemented &#x2713;
-    * tested &#x2713;
+    * implemented &#x2717;
+    * tested &#x2717;
