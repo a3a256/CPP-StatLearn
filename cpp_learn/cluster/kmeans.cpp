@@ -6,6 +6,10 @@
 #include <algorithm>
 #include "../../numcpp/np_define.h"
 
+/*
+Initialise centroids, in this case I took k-first samples out of the training dataset
+*/
+
 std::vector<std::vector<float>> initialise(std::vector<std::vector<float>> x, int k){
     std::vector<std::vector<float>> weights;
     int i;
@@ -15,9 +19,19 @@ std::vector<std::vector<float>> initialise(std::vector<std::vector<float>> x, in
     return weights;
 }
 
+/*
+Distance |x-y|
+*/
+
 float distance(float x, float y){
     return std::abs(x-y);
 }
+
+/*
+Slice, we slice values, just as if we would do it using ndarray, like x[classified == cur_label, feature number]
+for future to return mean values for each feature
+So, if n value of classified is equal to label - we add corresponding row to temporary dataset
+*/
 
 std::vector<std::vector<float>> slice(int label, int feature, std::vector<std::vector<float>> &vals, std::vector<int> &classified){
     std::vector<std::vector<float>> temp;
@@ -35,6 +49,14 @@ struct compare{
         return a.second>b.second;
     }
 };
+
+/*
+Added classifier below
+What it does - it iterates through each row and each feature
+We find distance for each value from our sample for each of K centroids for each feature
+after finding distance for each feature and sample we find the closest, using argmin(finding the index with the smallest value)
+after finding predicted values for each feature we find the most predicted label and accept it as end result for a give sample
+*/
 
 std::vector<int> classify(std::vector<std::vector<float>> &x, std::vector<std::vector<float>> &centroids, int n){
     std::vector<int> res;
