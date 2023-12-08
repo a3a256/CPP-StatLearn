@@ -4,6 +4,7 @@
 #include <cmath>
 #include <vector>
 #include <tuple>
+#include <climits>
 // all functions are redefined all of a sudden, needs further search into the topic
 std::vector<float> diag(std::vector<std::vector<float>> matrix){
     std::vector<float> di;
@@ -33,6 +34,18 @@ int argmax(std::vector<float> arr){
         if(arr[i]>max){
             max = arr[i];
             index=i;
+        }
+    }
+    return index;
+}
+
+int argmin(std::vector<float> arr){
+    int _min = INT_MAX;
+    int index = 0;
+    for(int i=0; i<arr.size(); i++){
+        if(arr[i]<_min){
+            _min = arr[i];
+            index = i;
         }
     }
     return index;
