@@ -33,12 +33,12 @@ for future to return mean values for each feature
 So, if n value of classified is equal to label - we add corresponding row to temporary dataset
 */
 
-std::vector<std::vector<float>> slice(int label, int feature, std::vector<std::vector<float>> &vals, std::vector<int> &classified){
+std::vector<std::vector<float>> slice(int label, std::vector<std::vector<float>> &vals, std::vector<int> &classified){
     std::vector<std::vector<float>> temp;
     int i;
     for(i=0; i<vals.size(); i++){
         if(classified[i] == label){
-            temp.push_back({vals[i][feature]});
+            temp.push_back(vals[i]);
         }
     }
     return temp;
@@ -83,11 +83,27 @@ std::vector<int> classify(std::vector<std::vector<float>> &x, std::vector<std::v
     return res;
 }
 
-std::vector<std::vector<float>> kmeans_fit(std::vector<std::vector<float>> x, int k, int epochs){
-    std::vector<std::vector<float>> weight;
-    weight = initialise(x, k);
-    int i, j, k;
+std::vector<std::vector<float>> kmeans_fit(std::vector<std::vector<float>> &x, std::vector<std::vector<float>> &centroids, int k, int epochs){
+    std::vector<std::vector<float>> initial_centroids, means;
+    initial_centroids = initialise(x, k);
+    std::vector<int> classified;
+    classified = classify(x, initial_centroids, k);
+    int i, j;
     for(i=0; i<epochs; i++){
+        for(j=0; j<k; j++){
+            means.push_back(mean_calculate(slice(j, x, classified), 0));
+        }
+        classified = classify(x, means, k);
+        if(centroids.size() != 0){
+            if(allclose(means, centroids)){
+                break;
+            }else{
+                centroids = means;
+            }
+        }else{
+            centroids = means;
+        }
+        std::vector<std::vector<float>>().swap(means);
     }
-    return weight;
+    return centroids;
 }

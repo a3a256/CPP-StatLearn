@@ -7,6 +7,7 @@ float** transpose_matrix();
 std::vector<std::vector<float>> dot();
 float** transform_scaler();
 int argmax();
+int argmin();
 class mean{
     public:
         int axis = 0;
@@ -31,3 +32,4 @@ std::vector<std::vector<float>> inv();
 std::vector<std::vector<std::vector<float>>> qr();
 std::vector<float> diag();
 std::vector<std::vector<std::vector<float>>> eigenvalues();
+bool allclose();

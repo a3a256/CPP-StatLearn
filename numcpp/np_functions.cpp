@@ -18,6 +18,20 @@ std::vector<float> diag(std::vector<std::vector<float>> matrix){
     return di;
 }
 
+bool allclose(std::vector<std::vector<float>> a, std::vector<std::vector<float>> b, float tol = 10e-3){
+    int i, j;
+    float diff;
+    for(i=0; i<a.size(); i++){
+        for(j=0; j<b.size(); j++){
+            diff = std::abs(a[i][j] - b[i][j]);
+            if(diff > tol){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 std::vector<std::vector<int>> square(std::vector<std::vector<int>> vec){
     for(int i = 0; i<vec.size(); i++){
         for(int j = 0; j<vec[0].size(); j++){
