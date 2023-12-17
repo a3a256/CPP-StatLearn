@@ -15,7 +15,7 @@ class SGDSVMClassifier{
         int epochs = 20;
 
         void fit(std::vector<std::vector<float>> x, std::vector<std::vector<int>> y){
-            svc.fit(x, y, lr, epochs, C);
+            svc.fit(x, y, lr, epochs);
         }
 
         std::vector<std::vector<int>> predict(std::vector<std::vector<float>> x){

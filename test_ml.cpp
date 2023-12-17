@@ -6,6 +6,33 @@
 #include "cpp_learn/metrics/activate.h"
 #include "cpp_learn/svm/activate.h"
 #include "cpp_learn/discriminant_analysis/activate.h"
+#include "cpp_learn/cluster/activate.h"
+#include <climits>
+
+void test_kmeans(){
+    std::vector<std::vector<float>> x(100, std::vector<float>(4, 0.0f));
+    int i, j;
+    for(i=0; i<100; i++){
+        for(j=0; j<4; j++){
+            x[i][j] = ((float)rand()/RAND_MAX);
+        }
+    }
+
+    KMeans kmeans(2);
+    kmeans.fit(x);
+    std::vector<std::vector<float>> test(10, std::vector<float>(4, 0.0f));
+    for(i=0; i<10; i++){
+        for(j=0; j<4; j++){
+            test[i][j] = ((float)rand()/RAND_MAX);
+        }
+    }
+    std::vector<std::vector<int>> res;
+    res = kmeans.predict(test);
+    for(i=0; i<10; i++){
+        std::cout << res[i][0] << " ";
+    }
+    std::cout << '\n';
+}
 
 void test_lg_regression(){
     std::vector<std::vector<float>> x {{3.4f, 7.8f}, {2.3f, 6.5f}, {8.9f, 9.0f}, {1.2f, 7.3f}};
@@ -263,7 +290,7 @@ int main(){
 
     // std::cout << "check\n";
 
-    test_svc_classifier();
+    test_kmeans();
 
     return 0;
 }
