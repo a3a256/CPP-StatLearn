@@ -75,15 +75,7 @@ std::vector<int> classify(std::vector<std::vector<float>> &x, std::vector<std::v
         for(auto it: temp_cluster){
             lb_clicks.push_back({it.first, it.second});
         }
-        for(k=0; k<lb_clicks.size(); k++){
-            std::cout << lb_clicks[k].second << ' ';
-        }
-        std::cout << '\n';
         std::sort(lb_clicks.begin(), lb_clicks.end(), compare());
-        for(k=0; k<lb_clicks.size(); k++){
-            std::cout << lb_clicks[k].second << ' ';
-        }
-        std::cout << "\ndone\n";
         res.push_back(lb_clicks[0].first);
         std::map<int, int>().swap(temp_cluster);
         std::vector<std::pair<int, int>>().swap(lb_clicks);
@@ -97,10 +89,6 @@ std::vector<std::vector<float>> kmeans_fit(std::vector<std::vector<float>> &x, s
     std::vector<int> classified;
     classified = classify(x, initial_centroids, k);
     int i, j;
-    for(i=0; i<classified.size(); i++){
-        std::cout << classified[i] << ' ';
-    }
-    std::cout << '\n';
     for(i=0; i<epochs; i++){
         for(j=0; j<k; j++){
             means.push_back(mean_calculate(slice(j, x, classified), 0));
