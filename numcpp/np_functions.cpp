@@ -5,6 +5,8 @@
 #include <vector>
 #include <tuple>
 #include <climits>
+#include <algorithm>
+#include <numeric>
 // all functions are redefined all of a sudden, needs further search into the topic
 std::vector<float> diag(std::vector<std::vector<float>> matrix){
     std::vector<float> di;
@@ -42,25 +44,19 @@ std::vector<std::vector<int>> square(std::vector<std::vector<int>> vec){
 }
 
 int argmax(std::vector<float> arr){
-    int max=arr[0];
-    int index=0;
-    for(int i=0; i<arr.size(); i++){
-        if(arr[i]>max){
-            max = arr[i];
-            index=i;
-        }
+    float max = *max_element(arr.begin(), arr.end());
+    int index = 0;
+    while(arr[index] != max){
+        index++;
     }
     return index;
 }
 
 int argmin(std::vector<float> arr){
-    int _min = INT_MAX;
+    float _min = *min_element(arr.begin(), arr.end());
     int index = 0;
-    for(int i=0; i<arr.size(); i++){
-        if(arr[i]<_min){
-            _min = arr[i];
-            index = i;
-        }
+    while(arr[index] != _min){
+        index++;
     }
     return index;
 }
